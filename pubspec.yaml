@@ -1,0 +1,62 @@
+name: meelo  
+description: meelo - A Flutter application with multilingual support
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Core dependencies
+  supabase_flutter: ^2.5.6
+  flutter_dotenv: ^5.1.0
+  http: ^1.1.0
+  uuid: ^4.0.0
+  intl: ^0.20.2
+  
+  # State management and persistence
+  provider: ^6.1.2
+  shared_preferences: ^2.2.2
+  
+  # Deep linking for email verification
+  app_links: ^6.3.2
+  
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  fonts:
+    - family: Manrope
+      fonts:
+        - asset: fonts/Manrope-Bold.ttf
+          weight: 700
+        - asset: fonts/Manrope-Regular.ttf
+          weight: 400
+
+  uses-material-design: true
+  
+  # Assets
+  assets:
+    - dotenv.env
+
+  # Enable generate flag for potential future use
+  generate: false
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/meelo_logo.png"
+  adaptive_icon_background: "#f8f9fa"
+  adaptive_icon_foreground: "assets/meelo_logo.png"

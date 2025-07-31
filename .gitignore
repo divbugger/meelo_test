@@ -1,0 +1,152 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+dotenv.env
+.env
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+.cursor/
+.cursor/mcp.json
+.vscode/
+assets/
+migrate_working_dir/
+supabase/
+edge_device_code/
+SUPABASE_EMAIL_VERIFICATION_SETUP.md
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Additional Flutter/Dart entries
+*.lock
+.packages
+**/ios/Flutter/ephemeral/
+**/ios/Pods/
+**/ios/Runner.xcworkspace/
+**/ios/DerivedData/
+**/ios/.symlinks/
+**/ios/build/
+**/macos/Flutter/ephemeral/
+**/macos/build/
+**/windows/flutter/ephemeral/
+**/windows/build/
+**/linux/flutter/ephemeral/
+**/linux/build/
+
+# Android build artifacts
+**/android/.gradle/
+**/android/app/build/
+**/android/build/
+**/android/local.properties
+**/android/key.properties
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+
+# iOS build artifacts
+**/ios/Runner.xcworkspace/xcshareddata/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Runner.xcodeproj/xcuserdata/
+**/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+
+# macOS build artifacts
+**/macos/Runner.xcodeproj/xcuserdata/
+**/macos/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Windows build artifacts
+**/windows/flutter/generated_plugin_registrant.cc
+**/windows/flutter/generated_plugin_registrant.h
+**/windows/flutter/generated_plugins.cmake
+
+# Linux build artifacts
+**/linux/flutter/generated_plugin_registrant.cc
+**/linux/flutter/generated_plugin_registrant.h
+**/linux/flutter/generated_plugins.cmake
+
+# Web build artifacts
+**/web/firebase.json
+**/web/.firebase/
+
+# Test coverage
+coverage/
+test/coverage/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Security and sensitive files
+*.key
+*.pem
+*.jks
+*.p12
+*.keystore
+*.pfx
+*.crt
+*.csr
+*.p8
+*.mobileprovision
+*.cer
+
+# Project-specific sensitive files (uncomment if these contain sensitive data)
+figma_data.json
+node_data.json
+formatted_node_data.json
+formatted_complete_data.json
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# FVM (Flutter Version Management)
+.fvm/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.mocks.dart

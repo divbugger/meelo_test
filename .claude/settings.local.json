@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "WebFetch(domain:www.figma.com)",
+      "Bash(mv:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(rm:*)",
+      "Bash(flutter pub:*)",
+      "Bash(dart run:*)",
+      "Bash(supabase status:*)",
+      "Bash(mkdir:*)",
+      "Bash(flutter run:*)"
+    ],
+    "deny": []
+  }
+}
