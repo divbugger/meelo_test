@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth_service.dart';
+import '../../services/language_service.dart';
+import '../../l10n/app_localizations.dart';
 import '../main_tabs_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -42,6 +44,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
+
+    // Get current language from service
+    final languageService = Provider.of<LanguageService>(context, listen: false);
+    _language = languageService.currentLocale.languageCode;
     
     _animationController.forward();
   }
@@ -82,8 +88,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   Future<void> _completeOnboarding() async {
     if (_selectedUserMode == null || _name.isEmpty || _birthDate == null || _gender.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please complete all fields'),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)?.pleaseCompleteAllFields ?? 'Please complete all fields'),
           backgroundColor: Colors.red,
         ),
       );
@@ -114,7 +120,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to complete setup: ${e.toString()}'),
+            content: Text('${AppLocalizations.of(context)?.failedToCompleteSetup ?? 'Failed to complete setup'}: ${e.toString()}'),
             backgroundColor: Colors.red,
           ),
         );
@@ -158,7 +164,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Setup your profile',
+                            AppLocalizations.of(context)?.setupYourProfile ?? 'Setup your profile',
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -241,6 +247,21 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ),
             child: Column(
               children: [
+                // Step counter - moved to top-left
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppLocalizations.of(context)?.stepOf.replaceAll('{current}', '1').replaceAll('{total}', '4') ?? 'Step 1 of 4',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 16),
+                
                 // Icon
                 Container(
                   width: 60,
@@ -260,23 +281,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 
                 // Title
                 Text(
-                  'How will you be using the app?',
+                  AppLocalizations.of(context)?.howWillYouUse ?? 'How will you be using the app?',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: const Color(0xFF2d3748),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const SizedBox(height: 8),
-                
-                // Step counter
-                Text(
-                  'Step 1 of 4',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -285,7 +293,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 
                 // Subtitle
                 Text(
-                  'Please select your role to personalize your experience',
+                  AppLocalizations.of(context)?.selectRoleToPersonalize ?? 'Please select your role to personalize your experience',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Colors.grey[600],
                   ),
@@ -301,7 +309,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       Expanded(
                         child: _buildModeCard(
                           mode: UserMode.personWithDementia,
-                          title: 'Person with Dementia',
+                          title: AppLocalizations.of(context)?.personWithDementia ?? 'Person with Dementia',
                           icon: Icons.person,
                           isSelected: _selectedUserMode == UserMode.personWithDementia,
                         ),
@@ -310,7 +318,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       Expanded(
                         child: _buildModeCard(
                           mode: UserMode.caregiver,
-                          title: 'Caregiver',
+                          title: AppLocalizations.of(context)?.caregiver ?? 'Caregiver',
                           icon: Icons.favorite,
                           isSelected: _selectedUserMode == UserMode.caregiver,
                         ),
@@ -361,7 +369,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 borderRadius: BorderRadius.circular(12),
                 child: Center(
                   child: Text(
-                    'Weiter',
+                    AppLocalizations.of(context)?.continueText ?? 'Continue',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -483,6 +491,21 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  // Step counter - moved to top-left
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppLocalizations.of(context)?.stepOf.replaceAll('{current}', '2').replaceAll('{total}', '4') ?? 'Step 2 of 4',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 16),
+                  
                   // Icon
                   Container(
                     width: 60,
@@ -502,23 +525,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   
                   // Title
                   Text(
-                    'What\'s your name?',
+                    AppLocalizations.of(context)?.whatsYourName ?? 'What\'s your name?',
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: const Color(0xFF2d3748),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  
-                  const SizedBox(height: 8),
-                  
-                  // Step counter
-                  Text(
-                    'Step 2 of 4',
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -527,7 +537,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   
                   // Subtitle
                   Text(
-                    'This will help us personalize your experience',
+                    AppLocalizations.of(context)?.personalizeExperience ?? 'This will help us personalize your experience',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Colors.grey[600],
                     ),
@@ -547,10 +557,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       // Dismiss keyboard when tapping outside
                       FocusScope.of(context).unfocus();
                     },
-                    decoration: const InputDecoration(
-                      labelText: 'Full Name',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person_outline),
+                    decoration: InputDecoration(
+                      labelText: AppLocalizations.of(context)?.fullName ?? 'Full Name',
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.person_outline),
                     ),
                     textCapitalization: TextCapitalization.words,
                   ),
@@ -596,7 +606,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 borderRadius: BorderRadius.circular(12),
                 child: Center(
                   child: Text(
-                    'Weiter',
+                    AppLocalizations.of(context)?.continueText ?? 'Continue',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -641,6 +651,21 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ),
             child: Column(
               children: [
+                // Step counter - moved to top-left
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    AppLocalizations.of(context)?.stepOf.replaceAll('{current}', '3').replaceAll('{total}', '4') ?? 'Step 3 of 4',
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                
+                const SizedBox(height: 16),
+                
                 // Icon
                 Container(
                   width: 60,
@@ -660,23 +685,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 
                 // Title
                 Text(
-                  'When were you born?',
+                  AppLocalizations.of(context)?.whenWereYouBorn ?? 'When were you born?',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: const Color(0xFF2d3748),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const SizedBox(height: 8),
-                
-                // Step counter
-                Text(
-                  'Step 3 of 4',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -685,7 +697,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 
                 // Subtitle
                 Text(
-                  'This helps us provide age-appropriate content',
+                  AppLocalizations.of(context)?.ageAppropriateContent ?? 'This helps us provide age-appropriate content',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: Colors.grey[600],
                   ),
@@ -723,7 +735,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                           child: Text(
                             _birthDate != null
                                 ? '${_birthDate!.day}/${_birthDate!.month}/${_birthDate!.year}'
-                                : 'Select your birth date',
+                                : AppLocalizations.of(context)?.selectBirthDate ?? 'Select your birth date',
                             style: TextStyle(
                               fontSize: 16,
                               color: _birthDate != null ? Colors.black : Colors.grey[600],
@@ -775,7 +787,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 borderRadius: BorderRadius.circular(12),
                 child: Center(
                   child: Text(
-                    'Weiter',
+                    AppLocalizations.of(context)?.continueText ?? 'Continue',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -818,73 +830,77 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 ),
               ],
             ),
-            child: Column(
-              children: [
-                // Icon
-                Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF483FA9).withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(30),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Step counter - moved to top-left
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppLocalizations.of(context)?.stepOf.replaceAll('{current}', '4').replaceAll('{total}', '4') ?? 'Step 4 of 4',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.wc_outlined,
-                    color: Color(0xFF483FA9),
-                    size: 30,
+                  
+                  const SizedBox(height: 16),
+                  
+                  // Icon
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF483FA9).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Icon(
+                      Icons.wc_outlined,
+                      color: Color(0xFF483FA9),
+                      size: 30,
+                    ),
                   ),
-                ),
-                
-                const SizedBox(height: 16),
-                
-                // Title
-                Text(
-                  'How do you identify?',
-                  style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFF2d3748),
+                  
+                  const SizedBox(height: 16),
+                  
+                  // Title
+                  Text(
+                    AppLocalizations.of(context)?.howDoYouIdentify ?? 'How do you identify?',
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF2d3748),
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const SizedBox(height: 8),
-                
-                // Step counter
-                Text(
-                  'Step 4 of 4',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
+                  
+                  const SizedBox(height: 12),
+                  
+                  // Subtitle
+                  Text(
+                    AppLocalizations.of(context)?.personalizeExperience ?? 'This helps us personalize your experience',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const SizedBox(height: 12),
-                
-                // Subtitle
-                Text(
-                  'This helps us personalize your experience',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: Colors.grey[600],
+                  
+                  const SizedBox(height: 16),
+                  
+                  Column(
+                    children: [
+                      _buildGenderOption(AppLocalizations.of(context)?.male ?? 'Male'),
+                      const SizedBox(height: 8),
+                      _buildGenderOption(AppLocalizations.of(context)?.female ?? 'Female'),
+                      const SizedBox(height: 8),
+                      _buildGenderOption(AppLocalizations.of(context)?.other ?? 'Other'),
+                      const SizedBox(height: 8),
+                      _buildGenderOption(AppLocalizations.of(context)?.preferNotToSay ?? 'Prefer not to say'),
+                    ],
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                
-                const SizedBox(height: 16),
-                
-                Column(
-                  children: [
-                    _buildGenderOption('Male'),
-                    const SizedBox(height: 8),
-                    _buildGenderOption('Female'),
-                    const SizedBox(height: 8),
-                    _buildGenderOption('Other'),
-                    const SizedBox(height: 8),
-                    _buildGenderOption('Prefer not to say'),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -936,7 +952,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                           ),
                         )
                       : Text(
-                          'Setup abschließen',
+                          AppLocalizations.of(context)?.completeSetup ?? 'Complete Setup',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,

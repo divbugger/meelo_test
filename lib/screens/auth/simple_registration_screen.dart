@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth_service.dart';
+import '../../services/language_service.dart';
+import '../../l10n/app_localizations.dart';
 import 'login_screen.dart';
 import 'email_verification_screen.dart';
 
@@ -22,6 +24,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _acceptTerms = false;
+  String _selectedLanguage = 'en';
   
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -51,6 +54,10 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
       curve: Curves.easeOutCubic,
     ));
 
+    // Get current language from service
+    final languageService = Provider.of<LanguageService>(context, listen: false);
+    _selectedLanguage = languageService.currentLocale.languageCode;
+
     _animationController.forward();
   }
 
@@ -67,8 +74,8 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
     if (!_formKey.currentState!.validate() || !_acceptTerms) {
       if (!_acceptTerms) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please accept the terms and conditions'),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)?.pleaseAcceptTerms ?? 'Please accept the terms and conditions'),
             backgroundColor: Colors.red,
           ),
         );
@@ -81,6 +88,10 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
     });
 
     try {
+      // Set the selected language before sign up
+      final languageService = Provider.of<LanguageService>(context, listen: false);
+      await languageService.changeLanguage(_selectedLanguage);
+
       final authService = Provider.of<AuthService>(context, listen: false);
       final response = await authService.signUp(
         email: _emailController.text.trim(),
@@ -101,7 +112,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Registration failed: ${e.toString()}'),
+            content: Text('${AppLocalizations.of(context)?.registrationFailed ?? 'Registration failed'}: ${e.toString()}'),
             backgroundColor: Colors.red,
           ),
         );
@@ -144,7 +155,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
 
                       // Title
                       Text(
-                        'Create Account',
+                        AppLocalizations.of(context)?.createAccount ?? 'Create Account',
                         style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: const Color(0xFF2d3748),
@@ -154,7 +165,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                       const SizedBox(height: 8),
 
                       Text(
-                        'Create your account to get started',
+                        AppLocalizations.of(context)?.createAccountSubtitle ?? 'Create your account to get started',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.grey[600],
                         ),
@@ -171,17 +182,17 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                             TextFormField(
                               controller: _emailController,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                labelText: 'Email Address',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.email_outlined),
+                              decoration: InputDecoration(
+                                labelText: AppLocalizations.of(context)?.email ?? 'Email Address',
+                                border: const OutlineInputBorder(),
+                                prefixIcon: const Icon(Icons.email_outlined),
                               ),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
-                                  return 'Please enter your email address';
+                                  return AppLocalizations.of(context)?.pleaseEnterEmail ?? 'Please enter your email address';
                                 }
                                 if (!value.contains('@') || !value.contains('.')) {
-                                  return 'Please enter a valid email address';
+                                  return AppLocalizations.of(context)?.pleaseEnterValidEmail ?? 'Please enter a valid email address';
                                 }
                                 return null;
                               },
@@ -194,7 +205,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                               controller: _passwordController,
                               obscureText: _obscurePassword,
                               decoration: InputDecoration(
-                                labelText: 'Password',
+                                labelText: AppLocalizations.of(context)?.password ?? 'Password',
                                 border: const OutlineInputBorder(),
                                 prefixIcon: const Icon(Icons.lock_outline),
                                 suffixIcon: IconButton(
@@ -208,10 +219,10 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter a password';
+                                  return AppLocalizations.of(context)?.pleaseEnterPassword ?? 'Please enter a password';
                                 }
                                 if (value.length < 6) {
-                                  return 'Password must be at least 6 characters';
+                                  return AppLocalizations.of(context)?.passwordMinLengthMessage ?? 'Password must be at least 6 characters';
                                 }
                                 return null;
                               },
@@ -224,7 +235,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                               controller: _confirmPasswordController,
                               obscureText: _obscureConfirmPassword,
                               decoration: InputDecoration(
-                                labelText: 'Confirm Password',
+                                labelText: AppLocalizations.of(context)?.confirmPassword ?? 'Confirm Password',
                                 border: const OutlineInputBorder(),
                                 prefixIcon: const Icon(Icons.lock_outline),
                                 suffixIcon: IconButton(
@@ -238,12 +249,49 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please confirm your password';
+                                  return AppLocalizations.of(context)?.pleaseConfirmPassword ?? 'Please confirm your password';
                                 }
                                 if (value != _passwordController.text) {
-                                  return 'Passwords do not match';
+                                  return AppLocalizations.of(context)?.passwordsDontMatch ?? 'Passwords do not match';
                                 }
                                 return null;
+                              },
+                            ),
+
+                            const SizedBox(height: 20),
+
+                            // Language selection dropdown
+                            DropdownButtonFormField<String>(
+                              value: _selectedLanguage,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Manrope',
+                                color: Color(0xFF040506),
+                              ),
+                              decoration: InputDecoration(
+                                labelText: AppLocalizations.of(context)?.languagePreference ?? 'Language Preference',
+                                border: const OutlineInputBorder(),
+                                prefixIcon: const Icon(Icons.language_outlined, color: Color(0xFF483FA9)),
+                              ),
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'en',
+                                  child: Text(AppLocalizations.of(context)?.english ?? 'English'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'de',
+                                  child: Text(AppLocalizations.of(context)?.german ?? 'Deutsch'),
+                                ),
+                              ],
+                              onChanged: (value) async {
+                                if (value != null && value != _selectedLanguage) {
+                                  setState(() {
+                                    _selectedLanguage = value;
+                                  });
+                                  // Change language immediately
+                                  final languageService = Provider.of<LanguageService>(context, listen: false);
+                                  await languageService.changeLanguage(value);
+                                }
                               },
                             ),
 
@@ -266,7 +314,7 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 12),
                                     child: Text(
-                                      'I accept the Terms and Conditions and Privacy Policy',
+                                      AppLocalizations.of(context)?.acceptTerms ?? 'I accept the Terms and Conditions and Privacy Policy',
                                       style: TextStyle(
                                         color: Colors.grey[600],
                                         fontSize: 14,
@@ -294,9 +342,9 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                                 ),
                                 child: _isLoading
                                     ? const CircularProgressIndicator(color: Colors.white)
-                                    : const Text(
-                                        'Create Account',
-                                        style: TextStyle(
+                                    : Text(
+                                        AppLocalizations.of(context)?.createAccount ?? 'Create Account',
+                                        style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -312,15 +360,15 @@ class _SimpleRegistrationScreenState extends State<SimpleRegistrationScreen>
                                 onPressed: _navigateToLogin,
                                 child: RichText(
                                   text: TextSpan(
-                                    text: 'Already have an account? ',
+                                    text: AppLocalizations.of(context)?.alreadyHaveAccount ?? 'Already have an account? ',
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontSize: 14,
                                     ),
-                                    children: const [
+                                    children: [
                                       TextSpan(
-                                        text: 'Sign In',
-                                        style: TextStyle(
+                                        text: AppLocalizations.of(context)?.signIn ?? 'Sign In',
+                                        style: const TextStyle(
                                           color: Color(0xFF483FA9),
                                           fontWeight: FontWeight.w600,
                                         ),

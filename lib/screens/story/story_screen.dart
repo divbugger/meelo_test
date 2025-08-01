@@ -79,8 +79,9 @@ class _StoryScreenState extends State<StoryScreen> {
       });
 
       if (mounted) {
+        final l10n = AppLocalizations.of(context)!;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load stories: $error')),
+          SnackBar(content: Text('${l10n.failedToLoadStories}: $error')),
         );
       }
     }
@@ -228,7 +229,7 @@ class _StoryScreenState extends State<StoryScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              story['place_name'] ?? 'Unknown Place',
+                              story['place_name'] ?? l10n.unknownPlace,
                               style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -236,7 +237,7 @@ class _StoryScreenState extends State<StoryScreen> {
                               ),
                             ),
                             Text(
-                              'by ${story['storyteller_name'] ?? 'Unknown'}',
+                              'by ${story['storyteller_name'] ?? l10n.unknown}',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey.shade600,
@@ -395,7 +396,7 @@ class _StoryScreenState extends State<StoryScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  story['place_name'] ?? 'Unknown Place',
+                                  story['place_name'] ?? l10n.unknownPlace,
                                   style: const TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -403,7 +404,7 @@ class _StoryScreenState extends State<StoryScreen> {
                                   ),
                                 ),
                                 Text(
-                                  'by ${story['storyteller_name'] ?? 'Unknown'}',
+                                  'by ${story['storyteller_name'] ?? l10n.unknown}',
                                   style: TextStyle(
                                     fontSize: 16,
                                     color: Colors.grey.shade600,
@@ -422,8 +423,8 @@ class _StoryScreenState extends State<StoryScreen> {
                                   ),
                                   child: Text(
                                     (story['language'] == 'de')
-                                        ? 'German Story'
-                                        : 'English Story',
+                                        ? l10n.germanStory
+                                        : l10n.englishStory,
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold,
@@ -496,8 +497,8 @@ class _StoryScreenState extends State<StoryScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      'Audio Generated',
+                                    Text(
+                                      l10n.audioGenerated,
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -506,7 +507,7 @@ class _StoryScreenState extends State<StoryScreen> {
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      'Audio file available for NFC playback system',
+                                      l10n.audioFileAvailable,
                                       style: TextStyle(
                                           fontSize: 14,
                                           color: Colors.grey.shade600),
@@ -617,7 +618,7 @@ class _StoryScreenState extends State<StoryScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to delete story: $error'),
+            content: Text('${AppLocalizations.of(context)!.failedToDeleteStory}: $error'),
             backgroundColor: Colors.red,
           ),
         );

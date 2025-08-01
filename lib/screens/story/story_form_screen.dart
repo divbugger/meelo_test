@@ -297,7 +297,7 @@ class _StoryFormScreenState extends State<StoryFormScreen> {
               _dismissKeyboard();
               Navigator.of(context).pop();
             },
-            tooltip: 'Close',
+            tooltip: l10n.close,
           ),
           title: Text(
             widget.isEditing ? l10n.editStory : l10n.createNewStory,

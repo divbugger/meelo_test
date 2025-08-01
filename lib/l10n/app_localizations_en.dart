@@ -317,6 +317,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createAccount => 'Create Account';
   
   @override
+  String get createAccountSubtitle => 'Create your account to get started';
+  
+  @override
+  String get email => 'Email Address';
+  
+  @override
+  String get alreadyHaveAccount => 'Already have an account? ';
+  
+  @override
+  String get signIn => 'Sign In';
+  
+  @override
   String get enterFullName => 'Please enter your full name';
   
   @override
@@ -336,4 +348,126 @@ class AppLocalizationsEn extends AppLocalizations {
   
   @override
   String get registrationFailed => 'Registration failed';
+  
+  // Validation messages
+  @override
+  String get pleaseEnterEmail => 'Please enter your email address';
+  
+  @override
+  String get pleaseEnterValidEmail => 'Please enter a valid email address';
+  
+  @override
+  String get pleaseEnterPassword => 'Please enter a password';
+  
+  @override
+  String get passwordMinLengthMessage => 'Password must be at least 6 characters';
+  
+  @override
+  String get pleaseConfirmPassword => 'Please confirm your password';
+  
+  @override
+  String get passwordsDontMatch => 'Passwords do not match';
+  
+  @override
+  String get pleaseAcceptTerms => 'Please accept the terms and conditions';
+  
+  // Story screen messages
+  @override
+  String get failedToLoadStories => 'Failed to load stories';
+  
+  @override
+  String get unknownPlace => 'Unknown Place';
+  
+  @override
+  String get unknown => 'Unknown';
+  
+  @override
+  String get germanStory => 'German Story';
+  
+  @override
+  String get englishStory => 'English Story';
+  
+  @override
+  String get audioGenerated => 'Audio Generated';
+  
+  @override
+  String get audioFileAvailable => 'Audio file available for NFC playback system';
+  
+  // Story form messages
+  @override
+  String get close => 'Close';
+  
+  @override
+  String get stepOf => 'Step {current} of {total}';
+  
+  @override
+  String get readyToCreateMemory => 'Ready to Create Your Memory';
+  
+  @override
+  String get favoritePlace => 'Favorite Place';
+  
+  @override
+  String get audioGenerated2 => 'Audio has been generated for this story';
+  
+  // Login screen messages
+  @override
+  String get welcomeBack => 'Welcome back';
+  
+  @override
+  String get signInToAccount => 'Sign in to your account to continue';
+  
+  @override
+  String get forgotPassword => 'Forgot Password?';
+  
+  @override
+  String get or => 'or';
+  
+  @override
+  String get createNewAccount => 'Create New Account';
+  
+  @override
+  String get loginFailed => 'Login failed';
+  
+  @override
+  String get forgotPasswordComingSoon => 'Forgot password feature coming soon';
+  
+  // Onboarding screen messages
+  @override
+  String get setupYourProfile => 'Setup your profile';
+  
+  @override
+  String get howWillYouUse => 'How will you be using the app?';
+  
+  @override
+  String get selectRoleToPersonalize => 'Please select your role to personalize your experience';
+  
+  @override
+  String get continueText => 'Continue';
+  
+  @override
+  String get whatsYourName => 'What\'s your name?';
+  
+  @override
+  String get personalizeExperience => 'This will help us personalize your experience';
+  
+  @override
+  String get whenWereYouBorn => 'When were you born?';
+  
+  @override
+  String get ageAppropriateContent => 'This helps us provide age-appropriate content';
+  
+  @override
+  String get howDoYouIdentify => 'How do you identify?';
+  
+  @override
+  String get other => 'Other';
+  
+  @override
+  String get completeSetup => 'Complete Setup';
+  
+  @override
+  String get pleaseCompleteAllFields => 'Please complete all fields';
+  
+  @override
+  String get failedToCompleteSetup => 'Failed to complete setup';
 }

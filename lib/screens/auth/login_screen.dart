@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../services/auth_service.dart';
+import '../../services/language_service.dart';
+import '../../l10n/app_localizations.dart';
 import '../main_tabs_screen.dart';
 import 'simple_registration_screen.dart';
 import 'onboarding_screen.dart';
@@ -21,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen>
   
   bool _isLoading = false;
   bool _obscurePassword = true;
+  String _selectedLanguage = 'en';
   
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -49,6 +52,10 @@ class _LoginScreenState extends State<LoginScreen>
       parent: _animationController,
       curve: Curves.easeOutCubic,
     ));
+
+    // Get current language from service
+    final languageService = Provider.of<LanguageService>(context, listen: false);
+    _selectedLanguage = languageService.currentLocale.languageCode;
 
     _animationController.forward();
   }
@@ -105,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Login failed: ${e.toString()}'),
+            content: Text('${AppLocalizations.of(context)?.loginFailed ?? 'Login failed'}: ${e.toString()}'),
             backgroundColor: Colors.red,
           ),
         );
@@ -183,11 +190,84 @@ class _LoginScreenState extends State<LoginScreen>
                         ),
                       ),
 
-                      const SizedBox(height: 50),
+                      const SizedBox(height: 30),
+
+                      // Language selector
+                      Center(
+                        child: Container(
+                          width: 200,
+                          height: 48,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: const Color(0xFFE6EEFE),
+                              width: 1,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.05),
+                                blurRadius: 8,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              value: _selectedLanguage,
+                              isExpanded: true,
+                              icon: const Icon(
+                                Icons.language_outlined,
+                                color: Color(0xFF483FA9),
+                              ),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Manrope',
+                                color: Color(0xFF040506),
+                              ),
+                              items: [
+                                DropdownMenuItem(
+                                  value: 'en',
+                                  child: Row(
+                                    children: [
+                                      const Text('🇺🇸'),
+                                      const SizedBox(width: 8),
+                                      Text(AppLocalizations.of(context)?.english ?? 'English'),
+                                    ],
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'de',
+                                  child: Row(
+                                    children: [
+                                      const Text('🇩🇪'),
+                                      const SizedBox(width: 8),
+                                      Text(AppLocalizations.of(context)?.german ?? 'Deutsch'),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              onChanged: (value) async {
+                                if (value != null && value != _selectedLanguage) {
+                                  setState(() {
+                                    _selectedLanguage = value;
+                                  });
+                                  // Change language immediately
+                                  final languageService = Provider.of<LanguageService>(context, listen: false);
+                                  await languageService.changeLanguage(value);
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 30),
 
                       // Welcome text
                       Text(
-                        'Welcome back',
+                        AppLocalizations.of(context)?.welcomeBack ?? 'Welcome back',
                         style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: const Color(0xFF2d3748),
@@ -197,7 +277,7 @@ class _LoginScreenState extends State<LoginScreen>
                       const SizedBox(height: 8),
 
                       Text(
-                        'Sign in to your account to continue',
+                        AppLocalizations.of(context)?.signInToAccount ?? 'Sign in to your account to continue',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Colors.grey[600],
                         ),
@@ -214,17 +294,17 @@ class _LoginScreenState extends State<LoginScreen>
                             TextFormField(
                               controller: _emailController,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: const InputDecoration(
-                                labelText: 'Email Address',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(Icons.email_outlined),
+                              decoration: InputDecoration(
+                                labelText: AppLocalizations.of(context)?.email ?? 'Email Address',
+                                border: const OutlineInputBorder(),
+                                prefixIcon: const Icon(Icons.email_outlined),
                               ),
                               validator: (value) {
                                 if (value == null || value.trim().isEmpty) {
-                                  return 'Please enter your email address';
+                                  return AppLocalizations.of(context)?.pleaseEnterEmail ?? 'Please enter your email address';
                                 }
                                 if (!value.contains('@') || !value.contains('.')) {
-                                  return 'Please enter a valid email address';
+                                  return AppLocalizations.of(context)?.pleaseEnterValidEmail ?? 'Please enter a valid email address';
                                 }
                                 return null;
                               },
@@ -237,7 +317,7 @@ class _LoginScreenState extends State<LoginScreen>
                               controller: _passwordController,
                               obscureText: _obscurePassword,
                               decoration: InputDecoration(
-                                labelText: 'Password',
+                                labelText: AppLocalizations.of(context)?.password ?? 'Password',
                                 border: const OutlineInputBorder(),
                                 prefixIcon: const Icon(Icons.lock_outline),
                                 suffixIcon: IconButton(
@@ -251,7 +331,7 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter your password';
+                                  return AppLocalizations.of(context)?.pleaseEnterPassword ?? 'Please enter your password';
                                 }
                                 return null;
                               },
@@ -266,14 +346,14 @@ class _LoginScreenState extends State<LoginScreen>
                                 onPressed: () {
                                   // TODO: Implement forgot password
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Forgot password feature coming soon'),
+                                    SnackBar(
+                                      content: Text(AppLocalizations.of(context)?.forgotPasswordComingSoon ?? 'Forgot password feature coming soon'),
                                     ),
                                   );
                                 },
-                                child: const Text(
-                                  'Forgot Password?',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppLocalizations.of(context)?.forgotPassword ?? 'Forgot Password?',
+                                  style: const TextStyle(
                                     color: Color.fromARGB(255, 72, 13, 174),
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -298,9 +378,9 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                                 child: _isLoading
                                     ? const CircularProgressIndicator(color: Colors.white)
-                                    : const Text(
-                                        'Sign In',
-                                        style: TextStyle(
+                                    : Text(
+                                        AppLocalizations.of(context)?.signIn ?? 'Sign In',
+                                        style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -317,7 +397,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 16),
                                   child: Text(
-                                    'or',
+                                    AppLocalizations.of(context)?.or ?? 'or',
                                     style: TextStyle(
                                       color: Colors.grey[600],
                                       fontWeight: FontWeight.w500,
@@ -345,9 +425,9 @@ class _LoginScreenState extends State<LoginScreen>
                                     borderRadius: BorderRadius.circular(16),
                                   ),
                                 ),
-                                child: const Text(
-                                  'Create New Account',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppLocalizations.of(context)?.createNewAccount ?? 'Create New Account',
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),

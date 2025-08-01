@@ -19,15 +19,11 @@ class _EmailRegistrationScreenState extends State<EmailRegistrationScreen> {
   bool _termsAccepted = false;
   bool _stayLoggedIn = true;
   bool _isEmailValid = false;
-  String _selectedLanguage = 'en';
 
   @override
   void initState() {
     super.initState();
     _emailController.addListener(_validateEmail);
-    // Get current language from service
-    final languageService = Provider.of<LanguageService>(context, listen: false);
-    _selectedLanguage = languageService.currentLocale.languageCode;
   }
 
   @override
@@ -179,66 +175,6 @@ class _EmailRegistrationScreenState extends State<EmailRegistrationScreen> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height < 600 ? 20 : 32),
                   
-                  // Language selection dropdown
-                  Container(
-                    width: double.infinity,
-                    height: 56,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: const Color(0xFFE6EEFE),
-                        width: 1,
-                      ),
-                    ),
-                    child: DropdownButtonFormField<String>(
-                      value: _selectedLanguage,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Manrope',
-                        color: Color(0xFF040506),
-                      ),
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)!.languagePreference,
-                        hintStyle: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Manrope',
-                          color: Colors.grey[500],
-                        ),
-                        border: InputBorder.none,
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 16,
-                        ),
-                        suffixIcon: const Icon(
-                          Icons.language_outlined,
-                          color: Color(0xFF483FA9),
-                        ),
-                      ),
-                      items: [
-                        DropdownMenuItem(
-                          value: 'en',
-                          child: Text(AppLocalizations.of(context)!.english),
-                        ),
-                        DropdownMenuItem(
-                          value: 'de',
-                          child: Text(AppLocalizations.of(context)!.german),
-                        ),
-                      ],
-                      onChanged: (value) async {
-                        if (value != null && value != _selectedLanguage) {
-                          setState(() {
-                            _selectedLanguage = value;
-                          });
-                          // Change language immediately
-                          final languageService = Provider.of<LanguageService>(context, listen: false);
-                          await languageService.changeLanguage(value);
-                        }
-                      },
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height < 600 ? 20 : 32),
-                  
                   // Terms & conditions checkbox
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -364,7 +300,7 @@ class _EmailRegistrationScreenState extends State<EmailRegistrationScreen> {
             userMode: widget.userMode,
             email: _emailController.text.trim(),
             stayLoggedIn: _stayLoggedIn,
-            selectedLanguage: _selectedLanguage,
+            selectedLanguage: 'en', // Default language since selection is now in simple registration
           ),
         ),
       );

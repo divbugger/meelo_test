@@ -31,7 +31,6 @@ class _PasswordSetupScreenState extends State<PasswordSetupScreen> {
   
   DateTime? _selectedBirthDate;
   String _selectedGender = 'prefer_not_to_say';
-  String _selectedLanguage = 'en';
   bool _isLoading = false;
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
@@ -46,7 +45,6 @@ class _PasswordSetupScreenState extends State<PasswordSetupScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedLanguage = widget.selectedLanguage;
   }
 
   @override
@@ -108,9 +106,6 @@ class _PasswordSetupScreenState extends State<PasswordSetupScreen> {
       );
 
       if (response.user != null) {
-        final languageService = Provider.of<LanguageService>(context, listen: false);
-        await languageService.setLanguage(_selectedLanguage);
-
         if (mounted) {
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => const MainTabsScreen()),
@@ -385,53 +380,6 @@ class _PasswordSetupScreenState extends State<PasswordSetupScreen> {
                             setState(() {
                               _selectedGender = value;
                             });
-                          }
-                        },
-                      ),
-
-                      SizedBox(height: MediaQuery.of(context).size.height < 600 ? 16 : 20),
-
-                      // Language dropdown
-                      DropdownButtonFormField<String>(
-                        value: _selectedLanguage,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'Manrope',
-                          color: Color(0xFF040506),
-                        ),
-                        decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context)!.languagePreference,
-                          labelStyle: TextStyle(
-                            fontSize: 16,
-                            fontFamily: 'Manrope',
-                            color: Colors.grey[600],
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(color: Color(0xFFE6EEFE)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(color: Color(0xFFE6EEFE)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(color: Color(0xFF483FA9)),
-                          ),
-                          prefixIcon: const Icon(Icons.language_outlined, color: Color(0xFF483FA9)),
-                        ),
-                        items: [
-                          DropdownMenuItem(value: 'en', child: Text(AppLocalizations.of(context)!.english)),
-                          DropdownMenuItem(value: 'de', child: Text(AppLocalizations.of(context)!.german)),
-                        ],
-                        onChanged: (value) async {
-                          if (value != null && value != _selectedLanguage) {
-                            setState(() {
-                              _selectedLanguage = value;
-                            });
-                            // Change language immediately
-                            final languageService = Provider.of<LanguageService>(context, listen: false);
-                            await languageService.changeLanguage(value);
                           }
                         },
                       ),

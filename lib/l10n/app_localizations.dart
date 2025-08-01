@@ -163,6 +163,10 @@ abstract class AppLocalizations {
   String get password;
   String get confirmPassword;
   String get createAccount;
+  String get createAccountSubtitle;
+  String get email;
+  String get alreadyHaveAccount;
+  String get signIn;
   String get enterFullName;
   String get nameMinLength;
   String get enterPassword;
@@ -170,6 +174,55 @@ abstract class AppLocalizations {
   String get confirmYourPassword;
   String get passwordsDoNotMatch;
   String get registrationFailed;
+  
+  // Validation messages
+  String get pleaseEnterEmail;
+  String get pleaseEnterValidEmail;
+  String get pleaseEnterPassword;
+  String get passwordMinLengthMessage;
+  String get pleaseConfirmPassword;
+  String get passwordsDontMatch;
+  String get pleaseAcceptTerms;
+  
+  // Story screen messages
+  String get failedToLoadStories;
+  String get unknownPlace;
+  String get unknown;
+  String get germanStory;
+  String get englishStory;
+  String get audioGenerated;
+  String get audioFileAvailable;
+  
+  // Story form messages
+  String get close;
+  String get stepOf;
+  String get readyToCreateMemory;
+  String get favoritePlace;
+  String get audioGenerated2;
+  
+  // Login screen messages
+  String get welcomeBack;
+  String get signInToAccount;
+  String get forgotPassword;
+  String get or;
+  String get createNewAccount;
+  String get loginFailed;
+  String get forgotPasswordComingSoon;
+  
+  // Onboarding screen messages
+  String get setupYourProfile;
+  String get howWillYouUse;
+  String get selectRoleToPersonalize;
+  String get continueText;
+  String get whatsYourName;
+  String get personalizeExperience;
+  String get whenWereYouBorn;
+  String get ageAppropriateContent;
+  String get howDoYouIdentify;
+  String get other;
+  String get completeSetup;
+  String get pleaseCompleteAllFields;
+  String get failedToCompleteSetup;
 }
 
 class _AppLocalizationsDelegate
