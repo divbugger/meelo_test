@@ -86,6 +86,11 @@ abstract class AppLocalizations {
   String get figures;
   String get profile;
 
+  // Account & Authentication
+  String get account;
+  String get signOut;
+  String get signOutConfirmation;
+
 
   // Stories
   String get aiGeneratedStories;

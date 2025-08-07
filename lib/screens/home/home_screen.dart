@@ -4,7 +4,9 @@ import 'package:meelo/services/auth_service.dart';
 import 'package:meelo/l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  final Function(int)? onTabChange;
+  
+  const HomeScreen({super.key, this.onTabChange});
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +121,7 @@ class HomeScreen extends StatelessWidget {
                       icon: Icons.auto_stories_outlined,
                       color: const Color(0xFFE6EEFE),
                       iconColor: const Color(0xFF483FA9),
+                      onTap: () => onTabChange?.call(1), // Navigate to Memories tab (index 1)
                     ),
                     _buildActionCard(
                       title: 'Profile',
@@ -126,6 +129,7 @@ class HomeScreen extends StatelessWidget {
                       icon: Icons.person_outline,
                       color: const Color(0xFFFFF2E6),
                       iconColor: const Color(0xFFFF8C00),
+                      onTap: () => onTabChange?.call(4), // Navigate to Profile tab (index 4)
                     ),
                   ],
                 ),
@@ -143,18 +147,21 @@ class HomeScreen extends StatelessWidget {
     required IconData icon,
     required Color color,
     required Color iconColor,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: color.withOpacity(0.3),
-          width: 1,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: color.withOpacity(0.3),
+            width: 1,
+          ),
         ),
-      ),
-      child: Column(
+        child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -199,6 +206,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ],
+        ),
       ),
     );
   }
