@@ -86,6 +86,15 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get profile => 'Profile';
 
+  // Account & Authentication
+  @override
+  String get account => 'Account';
+
+  @override
+  String get signOut => 'Sign Out';
+
+  @override
+  String get signOutConfirmation => 'Are you sure you want to sign out?';
 
   // Stories
   @override

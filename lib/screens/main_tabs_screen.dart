@@ -6,8 +6,6 @@ import 'package:meelo/screens/memories/memories_screen.dart';
 import 'package:meelo/screens/questionnaire/questionnaire_screen.dart';
 import 'package:meelo/screens/figures/figures_screen.dart';
 import 'package:meelo/screens/profile/profile_screen.dart';
-import 'package:meelo/widgets/language_selector.dart';
-import 'package:meelo/widgets/idem_logo.dart';
 import 'package:meelo/l10n/app_localizations.dart';
 
 class MainTabsScreen extends StatefulWidget {
@@ -20,13 +18,7 @@ class MainTabsScreen extends StatefulWidget {
 class _MainTabsScreenState extends State<MainTabsScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const MemoriesScreen(),
-    const QuestionnaireScreen(),
-    const FiguresScreen(),
-    const ProfileScreen(),
-  ];
+  late final List<Widget> _screens;
 
   final List<String> _tabTitles = [
     'Home',
@@ -37,24 +29,30 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _screens = [
+      HomeScreen(onTabChange: _changeTab),
+      const MemoriesScreen(),
+      const QuestionnaireScreen(),
+      const FiguresScreen(),
+      const ProfileScreen(),
+    ];
+  }
+
+  void _changeTab(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
     
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        // Use the Idem logo instead of text
-        title: const IdemLogo(
-          fontSize: 28,
-          fontWeight: FontWeight.w700,
-        ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
-        elevation: 1,
-        shadowColor: Colors.black12,
-        centerTitle: false, // Align logo to the left
-        actions: [const LanguageSelector()],
-      ),
+      appBar: null,
       body: IndexedStack(
         index: _currentIndex,
         children: _screens,

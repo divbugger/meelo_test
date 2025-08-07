@@ -1,14 +1,27 @@
-# CLAUDE.md - Project Context for idememory Flutter App
+# CLAUDE.md - Project Context for "meelo" Flutter App
 
 ## Project Overview
-**idememory** is a Flutter mobile application designed to help people with dementia and their caregivers manage memories and stories. The app supports both English and German languages and uses a purple branding theme.
+**meelo** is a Flutter mobile application designed to help people with dementia and their caregivers manage memories and stories. The app supports both English and German languages and uses a purple branding theme.
 
-## Recent Changes (2025-01-30)
-- **App Simplification**: Removed events and email address features to focus on core story/memory functionality
-- **Navigation Streamlined**: Eliminated bottom navigation bar; app now shows Stories screen directly
-- **Localization Cleanup**: Removed all event and email-related text strings from English and German translations
-- **Codebase Cleanup**: Deleted `/screens/event/` and `/screens/email/` directories completely
-- **Backend Verification**: Confirmed Supabase database contains no events/email tables - no backend changes needed
+## Recent Changes (2025-01-30 - Latest)
+- **Multi-Tab Navigation Implementation**: Implemented comprehensive 5-tab bottom navigation system
+  - **Home Tab**: Personalized dashboard with user greeting and interactive quick actions
+  - **Memories Tab**: Full-featured story management with CRUD operations, real-time updates, and AI story generation
+  - **Questionnaire Tab**: Placeholder screen for future cognitive assessment features
+  - **Figures Tab**: Placeholder screen for analytics/data visualization
+  - **Profile Tab**: Comprehensive settings screen with language selector and account management
+- **Language Management Enhancement**: Relocated language selector to Profile tab for better UX
+  - **Centralized Language Settings**: Language selection moved from app bar to Profile screen
+  - **Clean Navigation**: Removed app name/logo from navigation tabs for streamlined interface
+  - **Persistent Language Selection**: Language choice from signup automatically applies across all tabs
+  - **Profile Settings**: Added comprehensive settings interface with language switcher and sign-out functionality
+- **App Architecture**: Evolved from simplified single-screen approach to organized multi-tab interface
+- **Enhanced Navigation**: IndexedStack implementation maintains screen state during tab switching
+- **Improved User Experience**: Visual tab indicators with filled/outlined icons and branded color scheme
+- **Story Management**: Comprehensive story listing, creation, editing, deletion with real-time Supabase sync
+- **Professional UI**: Consistent theming across all screens with proper Material Design 3 integration
+
+## Previous Changes (2025-01-30)
 - **Figma Design Integration**: Successfully integrated Figma MCP Server for design-to-code workflow
 - **Registration Flow Redesign**: Completely redesigned user registration with modern UI matching Figma designs
 - **Two-Step Registration**: Split registration into Email Registration → Password Setup flow
@@ -62,7 +75,7 @@ lib/
 2. **User Mode Selection** → Choose "Person with Dementia" or "Caregiver"
 3. **Email Registration** (Figma design) → Email input + terms acceptance
 4. **Password Setup** → Name, birthdate, gender, language, password
-5. **Stories Screen** → Direct access to memory management (simplified single-screen interface)
+5. **Main App** → Multi-tab navigation with Home, Memories, Questionnaire, Figures, Profile tabs
 
 ### User Types (UserMode enum)
 - `UserMode.personWithDementia` - Primary users with dementia
@@ -191,34 +204,61 @@ flutter format .
 
 ## Core Features
 
-### Story Management
+### Multi-Tab Navigation System
+- **Home Tab**: Personalized dashboard with user greeting and interactive quick action cards that navigate to other tabs
+- **Memories Tab**: Comprehensive story management interface with full CRUD operations, real-time sync, and detailed story views
+- **Questionnaire Tab**: Future cognitive assessment and wellness tracking (placeholder)
+- **Figures Tab**: Future analytics and progress visualization (placeholder)
+- **Profile Tab**: Complete settings interface with language selector, account management, and sign-out functionality
+
+### Story Management (Memories Tab)
 - **AI Story Generation**: Uses Mistral AI to create personalized stories from user inputs
 - **Multi-language Support**: Stories generated in English or German based on user language preference
 - **Text-to-Speech**: ElevenLabs integration for audio narration of stories
 - **User Inputs**: Name, favorite place, personal connection, optional interesting facts
 - **Storage**: Stories and audio files stored in Supabase with real-time synchronization
+- **Real-time Updates**: Live synchronization of story changes across app instances
+- **Story Operations**: Create, view, edit, delete with confirmation dialogs
+- **Rich Story Display**: Modal bottom sheets with detailed story views
 
-### Simplified User Experience
-- **Single Screen Focus**: Direct access to story creation and management
-- **No Navigation Complexity**: Removed multi-tab interface for elderly user accessibility
-- **Streamlined Workflow**: Create → Generate → Listen to stories in simple steps
+### Enhanced User Experience
+- **Organized Navigation**: Clean tab-based interface without clutter - language selector moved to Profile tab
+- **State Preservation**: IndexedStack maintains screen states during tab switching
+- **Visual Feedback**: Tab indicators with filled/outlined icons and branded colors
+- **Interactive Elements**: Home screen quick actions navigate directly to relevant tabs
+- **Language Management**: Centralized language settings in Profile tab with persistent selection across app restart
+- **Responsive Design**: Optimized layouts for elderly users with varying technical skills
+- **Consistent Theming**: Material Design 3 with custom purple branding throughout
 
 ## Known Issues & TODOs
 
 ### Current Issues
-- None currently identified
+- **Flutter Development Environment**: Local Flutter installation needs repair for analysis/build commands
+- **Placeholder Screens**: Questionnaire and Figures screens need full implementation
 
-### Recently Fixed Issues
-- **RenderFlex Overflow**: Fixed overflow errors in user mode selection cards and password setup form
-- **Card Layout**: Improved responsive design for user type selection cards with proper height management
-- **Keyboard Handling**: Added tap-outside-to-dismiss functionality for better mobile UX
+### Recently Implemented
+- **Multi-Tab Navigation**: Complete 5-tab bottom navigation system with proper tab switching
+- **Home Dashboard**: Personalized greeting and interactive quick action cards that navigate to other tabs
+- **Memories Integration**: Full story management with real-time Supabase sync
+- **Profile Settings**: Comprehensive settings screen with language selector and account management
+- **Language Management**: Moved language selector from app bar to Profile tab for better UX
+- **Clean Interface**: Removed app name/logo from navigation tabs for streamlined appearance
+- **Visual Navigation**: Branded tab indicators with filled/outlined icons
+- **State Management**: IndexedStack preserves screen state during navigation
 
 ### Future Enhancements
+#### High Priority
+- [ ] Implement Questionnaire screen for cognitive assessments
+- [ ] Develop Figures/Analytics screen with user progress visualization
+
+#### Medium Priority
 - [ ] Add forgot password functionality
 - [ ] Implement email verification step
-- [ ] Add social login options (Google, Apple)
 - [ ] Enhance error messages with better localization
 - [ ] Add accessibility features (screen reader support)
+
+#### Low Priority
+- [ ] Add social login options (Google, Apple)
 - [ ] Implement dark mode theme
 - [ ] Add story sharing capabilities
 - [ ] Implement offline story playback
