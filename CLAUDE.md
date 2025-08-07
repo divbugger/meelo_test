@@ -236,6 +236,9 @@ flutter format .
 - **Flutter Development Environment**: Local Flutter installation needs repair for analysis/build commands
 - **Placeholder Screens**: Questionnaire and Figures screens need full implementation
 
+### TODOs
+- **User Account Log Out Flow**: When the user logs out of the account, the application goes to the login screen of the application.
+
 ### Recently Implemented
 - **Multi-Tab Navigation**: Complete 5-tab bottom navigation system with proper tab switching
 - **Home Dashboard**: Personalized greeting and interactive quick action cards that navigate to other tabs
@@ -306,6 +309,6 @@ flutter format .
 
 ---
 
-*Last Updated: January 30, 2025*
-*Project: idememory Flutter App*
+*Last Updated: 7 August, 2025*
+*Project: meelo Flutter App*
 *Version: 1.0.0+1*
