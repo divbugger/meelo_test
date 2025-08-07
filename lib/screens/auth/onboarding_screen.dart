@@ -21,10 +21,35 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   UserMode? _selectedUserMode;
   String _name = '';
   DateTime? _birthDate;
-  String _gender = '';
+  String _gender = ''; // This stores the database-compatible value
+  String _displayGender = ''; // This stores the localized display text
   String _language = 'en'; // default to English
   
   bool _isLoading = false;
+
+  // Map localized gender display text to database-compatible values
+  String _getGenderDatabaseValue(String displayText, AppLocalizations localizations) {
+    if (displayText == localizations.male || displayText == 'Male') {
+      return 'Male';
+    } else if (displayText == localizations.female || displayText == 'Female') {
+      return 'Female';
+    } else if (displayText == localizations.other || displayText == 'Other') {
+      return 'Other';
+    } else if (displayText == localizations.preferNotToSay || displayText == 'Prefer not to say') {
+      return 'Prefer not to say';
+    }
+    return 'Male'; // fallback
+  }
+
+  // Get the current gender options for display
+  List<String> _getGenderOptions(AppLocalizations localizations) {
+    return [
+      localizations.male,
+      localizations.female,
+      localizations.other,
+      localizations.preferNotToSay,
+    ];
+  }
   
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
@@ -86,7 +111,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 
   Future<void> _completeOnboarding() async {
-    if (_selectedUserMode == null || _name.isEmpty || _birthDate == null || _gender.isEmpty) {
+    if (_selectedUserMode == null || _name.isEmpty || _birthDate == null || _displayGender.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)?.pleaseCompleteAllFields ?? 'Please complete all fields'),
@@ -889,15 +914,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   const SizedBox(height: 16),
                   
                   Column(
-                    children: [
-                      _buildGenderOption(AppLocalizations.of(context)?.male ?? 'Male'),
-                      const SizedBox(height: 8),
-                      _buildGenderOption(AppLocalizations.of(context)?.female ?? 'Female'),
-                      const SizedBox(height: 8),
-                      _buildGenderOption(AppLocalizations.of(context)?.other ?? 'Other'),
-                      const SizedBox(height: 8),
-                      _buildGenderOption(AppLocalizations.of(context)?.preferNotToSay ?? 'Prefer not to say'),
-                    ],
+                    children: _getGenderOptions(AppLocalizations.of(context)!)
+                        .map((genderOption) => Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: _buildGenderOption(genderOption),
+                            ))
+                        .toList(),
                   ),
                 ],
               ),
@@ -914,12 +936,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             width: double.infinity,
             height: 56,
             decoration: BoxDecoration(
-              color: (_gender.isNotEmpty && !_isLoading) 
+              color: (_displayGender.isNotEmpty && !_isLoading) 
                   ? const Color(0xFF3A2F7A)  // Dark purple when valid
                   : const Color(0xFFE8E8E8), // Light grey when invalid
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: (_gender.isNotEmpty && !_isLoading) 
+                color: (_displayGender.isNotEmpty && !_isLoading) 
                     ? const Color(0xFF2D2360)  // Darker purple border when valid
                     : const Color(0xFF9E9E9E), // Grey border when invalid
                 width: 1.5,
@@ -973,12 +995,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
   }
 
-  Widget _buildGenderOption(String gender) {
-    final isSelected = _gender == gender;
+  Widget _buildGenderOption(String displayGender) {
+    final isSelected = _displayGender == displayGender;
     return GestureDetector(
       onTap: () {
         setState(() {
-          _gender = gender;
+          _displayGender = displayGender;
+          _gender = _getGenderDatabaseValue(displayGender, AppLocalizations.of(context)!);
         });
       },
       child: Container(
@@ -1011,7 +1034,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ),
             const SizedBox(width: 16),
             Text(
-              gender,
+              displayGender,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
