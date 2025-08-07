@@ -80,6 +80,11 @@ abstract class AppLocalizations {
 
   // Navigation
   String get stories;
+  String get home;
+  String get memories;
+  String get questionnaire;
+  String get figures;
+  String get profile;
 
 
   // Stories

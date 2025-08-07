@@ -94,8 +94,12 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'Manrope', // Use Manrope as default font
               colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color.fromARGB(255, 72, 13, 174),
-                brightness: Brightness.light, // Ensure light theme
+                seedColor: const Color(0xFF483FA9), // Primary purple from thematic.png
+                brightness: Brightness.light,
+                primary: const Color(0xFF483FA9),
+                secondary: const Color(0xFFFF8C00), // Orange accent from thematic.png
+                surface: Colors.white,
+                background: const Color(0xFFF8F9FA), // Light background
               ),
               useMaterial3: true,
 
@@ -107,57 +111,182 @@ class MyApp extends StatelessWidget {
               // AppBar theme with white background
               appBarTheme: const AppBarTheme(
                 backgroundColor: Colors.white,
-                foregroundColor: Colors.black87,
+                foregroundColor: Color(0xFF040506),
                 elevation: 1,
                 shadowColor: Colors.black12,
                 titleTextStyle: TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
-                  color: Colors.black87,
+                  color: Color(0xFF040506),
                 ),
               ),
 
-              // Bottom navigation theme
+              // Bottom navigation theme matching thematic.png
               bottomNavigationBarTheme: const BottomNavigationBarThemeData(
                 backgroundColor: Colors.white,
-                selectedItemColor: Color.fromARGB(255, 72, 13, 174),
-                unselectedItemColor: Colors.grey,
+                selectedItemColor: Color(0xFF483FA9),
+                unselectedItemColor: Color(0xFF9CA3AF),
                 elevation: 8,
                 type: BottomNavigationBarType.fixed,
+                selectedLabelStyle: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 12,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 10,
+                ),
               ),
 
-              // FloatingActionButton theme
+              // FloatingActionButton theme with orange accent
               floatingActionButtonTheme: const FloatingActionButtonThemeData(
-                backgroundColor: Color.fromARGB(255, 72, 13, 174),
+                backgroundColor: Color(0xFFFF8C00), // Orange from thematic.png
                 foregroundColor: Colors.white,
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                ),
               ),
 
               // ElevatedButton theme
               elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 72, 13, 174),
+                  backgroundColor: const Color(0xFF483FA9),
                   foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 2,
                 ),
               ),
 
               // OutlinedButton theme
               outlinedButtonTheme: OutlinedButtonThemeData(
                 style: OutlinedButton.styleFrom(
-                  foregroundColor: const Color.fromARGB(255, 72, 13, 174),
-                  side:
-                      const BorderSide(color: Color.fromARGB(255, 72, 13, 174)),
+                  foregroundColor: const Color(0xFF483FA9),
+                  side: const BorderSide(color: Color(0xFF483FA9), width: 1.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+
+              // Card theme
+              cardTheme: CardThemeData(
+                color: Colors.white,
+                elevation: 2,
+                shadowColor: Colors.black.withValues(alpha: 0.1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
 
               // Input decoration theme
-              inputDecorationTheme: const InputDecorationTheme(
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color.fromARGB(255, 72, 13, 174)),
+              inputDecorationTheme: InputDecorationTheme(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
                 ),
-                floatingLabelStyle: TextStyle(
-                  color: Color.fromARGB(255, 72, 13, 174),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF483FA9), width: 2),
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.grey.shade300),
+                ),
+                floatingLabelStyle: const TextStyle(
+                  color: Color(0xFF483FA9),
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                ),
+                labelStyle: TextStyle(
+                  fontFamily: 'Manrope',
+                  color: Colors.grey.shade600,
+                ),
+                filled: true,
+                fillColor: const Color(0xFFF8F9FA),
+              ),
+
+              // Text theme
+              textTheme: const TextTheme(
+                displayLarge: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF040506),
+                ),
+                displayMedium: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF040506),
+                ),
+                displaySmall: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF040506),
+                ),
+                headlineLarge: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF040506),
+                ),
+                headlineMedium: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF040506),
+                ),
+                headlineSmall: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF040506),
+                ),
+                titleLarge: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF040506),
+                ),
+                titleMedium: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF040506),
+                ),
+                titleSmall: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF040506),
+                ),
+                bodyLarge: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF040506),
+                ),
+                bodyMedium: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF040506),
+                ),
+                bodySmall: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF6B7280),
+                ),
+                labelLarge: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF040506),
+                ),
+                labelMedium: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF040506),
+                ),
+                labelSmall: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF6B7280),
                 ),
               ),
             ),
@@ -239,10 +368,10 @@ class MyAppWithError extends StatelessWidget {
                           height: 120,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(26),
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+                                                                 color: Colors.black.withValues(alpha: 0.1),
                                 blurRadius: 10,
                                 offset: const Offset(0, 5),
                               ),
@@ -280,7 +409,7 @@ class MyAppWithError extends StatelessWidget {
                           errorMessage,
                           style:
                               Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    color: Colors.white.withOpacity(0.9),
+                                    color: Colors.white.withValues(alpha: 0.9),
                                   ),
                           textAlign: TextAlign.center,
                         ),

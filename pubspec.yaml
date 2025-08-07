@@ -50,6 +50,7 @@ flutter:
   # Assets
   assets:
     - dotenv.env
+    - assets/thematic.png
 
   # Enable generate flag for potential future use
   generate: false

@@ -71,6 +71,21 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get stories => 'Erinnerungen';
 
+  @override
+  String get home => 'Startseite';
+
+  @override
+  String get memories => 'Erinnerungen';
+
+  @override
+  String get questionnaire => 'Fragebogen';
+
+  @override
+  String get figures => 'Zahlen';
+
+  @override
+  String get profile => 'Profil';
+
 
   // Stories
   @override

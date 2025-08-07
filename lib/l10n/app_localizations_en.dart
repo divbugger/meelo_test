@@ -71,6 +71,21 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get stories => 'Memories';
 
+  @override
+  String get home => 'Home';
+
+  @override
+  String get memories => 'Memories';
+
+  @override
+  String get questionnaire => 'Questionnaire';
+
+  @override
+  String get figures => 'Figures';
+
+  @override
+  String get profile => 'Profile';
+
 
   // Stories
   @override
