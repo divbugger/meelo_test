@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'screens/app_initializer.dart';
+import 'screens/auth_wrapper.dart';
 import 'services/language_service.dart';
 import 'services/auth_service.dart';
 import 'services/user_preferences_service.dart';
@@ -290,7 +290,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            home: const AppInitializer(), // Start with app initializer (no splash animation)
+            home: const AuthWrapper(), // Start with authentication wrapper for automatic navigation
             debugShowCheckedModeBanner:
                 false, // Remove debug banner for cleaner look
           );
