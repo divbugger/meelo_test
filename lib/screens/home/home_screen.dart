@@ -69,9 +69,9 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Welcome to meelo',
-                      style: TextStyle(
+                    Text(
+                      localizations.welcomeToApp,
+                      style: const TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Your personal memory companion',
+                      localizations.personalMemoryCompanion,
                       style: TextStyle(
                         fontFamily: 'Manrope',
                         fontSize: 16,
@@ -95,9 +95,9 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 32),
               
               // Quick Actions Section
-              const Text(
-                'Quick Actions',
-                style: TextStyle(
+              Text(
+                localizations.quickActions,
+                style: const TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -116,16 +116,16 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: 1.2,
                   children: [
                     _buildActionCard(
-                      title: 'Memories',
-                      subtitle: 'View your stories',
+                      title: localizations.memories,
+                      subtitle: localizations.viewYourStories,
                       icon: Icons.auto_stories_outlined,
                       color: const Color(0xFFE6EEFE),
                       iconColor: const Color(0xFF483FA9),
                       onTap: () => onTabChange?.call(1), // Navigate to Memories tab (index 1)
                     ),
                     _buildActionCard(
-                      title: 'Profile',
-                      subtitle: 'Manage settings',
+                      title: localizations.profile,
+                      subtitle: localizations.manageSettings,
                       icon: Icons.person_outline,
                       color: const Color(0xFFFFF2E6),
                       iconColor: const Color(0xFFFF8C00),

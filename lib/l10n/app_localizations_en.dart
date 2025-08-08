@@ -96,6 +96,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get signOutConfirmation => 'Are you sure you want to sign out?';
 
+  // Home Screen
+  @override
+  String get welcomeToApp => 'Welcome to meelo';
+
+  @override
+  String get personalMemoryCompanion => 'Your personal memory companion';
+
+  @override
+  String get quickActions => 'Quick Actions';
+
+  @override
+  String get viewYourStories => 'View your stories';
+
+  @override
+  String get manageSettings => 'Manage settings';
+
   // Stories
   @override
   String get aiGeneratedStories => 'Preserve your memories';

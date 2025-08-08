@@ -91,6 +91,13 @@ abstract class AppLocalizations {
   String get signOut;
   String get signOutConfirmation;
 
+  // Home Screen
+  String get welcomeToApp;
+  String get personalMemoryCompanion;
+  String get quickActions;
+  String get viewYourStories;
+  String get manageSettings;
+
 
   // Stories
   String get aiGeneratedStories;
