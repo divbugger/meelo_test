@@ -20,13 +20,6 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
 
   late final List<Widget> _screens;
 
-  final List<String> _tabTitles = [
-    'Home',
-    'Memories',
-    'Questionnaire', 
-    'Figures',
-    'Profile',
-  ];
 
   @override
   void initState() {
@@ -85,23 +78,23 @@ class _MainTabsScreenState extends State<MainTabsScreen> {
           items: [
             BottomNavigationBarItem(
               icon: _buildNavIcon(Icons.home_outlined, Icons.home, 0),
-              label: _tabTitles[0],
+              label: localizations.home,
             ),
             BottomNavigationBarItem(
               icon: _buildNavIcon(Icons.auto_stories_outlined, Icons.auto_stories, 1),
-              label: _tabTitles[1],
+              label: localizations.memories,
             ),
             BottomNavigationBarItem(
               icon: _buildNavIcon(Icons.quiz_outlined, Icons.quiz, 2),
-              label: _tabTitles[2],
+              label: localizations.questionnaire,
             ),
             BottomNavigationBarItem(
               icon: _buildNavIcon(Icons.analytics_outlined, Icons.analytics, 3),
-              label: _tabTitles[3],
+              label: localizations.figures,
             ),
             BottomNavigationBarItem(
               icon: _buildNavIcon(Icons.person_outline, Icons.person, 4),
-              label: _tabTitles[4],
+              label: localizations.profile,
             ),
           ],
         ),
