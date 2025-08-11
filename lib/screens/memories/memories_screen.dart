@@ -78,7 +78,8 @@ class _MemoriesScreenState extends State<MemoriesScreen> {
         _isLoading = false;
       });
 
-      if (mounted) {
+      // Only show snackbar for genuine errors, not when service handles missing table
+      if (mounted && !error.toString().contains('Failed to load stories')) {
         final l10n = AppLocalizations.of(context)!;
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('${l10n.failedToLoadStories}: $error')),
