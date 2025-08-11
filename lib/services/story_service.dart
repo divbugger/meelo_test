@@ -28,6 +28,12 @@ class StoryService {
 
       return List<Map<String, dynamic>>.from(res);
     } catch (error) {
+      // Handle case where stories table doesn't exist yet
+      if (error is PostgrestException && error.code == '42P01') {
+        debugPrint('Stories table does not exist yet. Returning empty list.');
+        return [];
+      }
+      
       debugPrint('Error fetching stories: $error');
       throw Exception('Failed to load stories');
     }
