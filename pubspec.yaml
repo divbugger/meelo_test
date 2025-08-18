@@ -50,7 +50,11 @@ flutter:
   # Assets
   assets:
     - dotenv.env
-    - assets/thematic.png
+    - assets/My_profile.png
+    - assets/ProfileSettings.png
+    - assets/Remember_Overview.png
+    - assets/Remember_Questionnaire.png
+    - assets/Static_Infos_Screen.png
 
   # Enable generate flag for potential future use
   generate: false

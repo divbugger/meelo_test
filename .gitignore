@@ -16,10 +16,7 @@ dotenv.env
 .cursor/mcp.json
 .vscode/
 assets/
-migrate_working_dir/
-supabase/
-edge_device_code/
-SUPABASE_EMAIL_VERIFICATION_SETUP.md
+
 
 # IntelliJ related
 *.iml
