@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meelo System Architecture</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .title {
+            text-align: center;
+            color: #02569B;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        .layer {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .flutter-layer {
+            background: linear-gradient(135deg, #02569B, #1976D2);
+            color: white;
+        }
+        
+        .service-layer {
+            background: linear-gradient(135deg, #E8F4FD, #BBDEFB);
+            color: #0D47A1;
+        }
+        
+        .backend-layer {
+            background: linear-gradient(135deg, #3ECF8E, #26C281);
+            color: white;
+        }
+        
+        .ai-layer {
+            background: linear-gradient(135deg, #FF6B35, #FF8F65);
+            color: white;
+        }
+        
+        .storage-layer {
+            background: linear-gradient(135deg, #6C63FF, #8C7AFF);
+            color: white;
+        }
+        
+        .data-layer {
+            background: linear-gradient(135deg, #34495E, #2C3E50);
+            color: white;
+        }
+        
+        .layer-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .components {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .component {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 100px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .flutter-layer .component {
+            background: rgba(255,255,255,0.95);
+            color: #02569B;
+        }
+        
+        .service-layer .component {
+            background: rgba(2,86,155,0.1);
+            color: #0D47A1;
+            border: 1px solid #02569B;
+        }
+        
+        .connection-arrows {
+            text-align: center;
+            font-size: 24px;
+            color: #666;
+            margin: 10px 0;
+        }
+        
+        .flow-description {
+            background: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .flow-title {
+            font-weight: bold;
+            color: #E65100;
+            margin-bottom: 10px;
+        }
+        
+        .protocol-badge {
+            display: inline-block;
+            background: #FFD54F;
+            color: #F57F17;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin: 2px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .api-endpoint {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            margin: 2px;
+            display: inline-block;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #FAFAFA;
+            border-radius: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Meelo Flutter App - System Architecture</div>
+        
+        <!-- Flutter Mobile App Layer -->
+        <div class="layer flutter-layer">
+            <div class="layer-title">Flutter Mobile Application</div>
+            <div class="components">
+                <div class="component">Auth Screens</div>
+                <div class="component">Home Dashboard</div>
+                <div class="component">Memories Screen</div>
+                <div class="component">Profile Screen</div>
+                <div class="component">Questionnaire</div>
+                <div class="component">Figures Screen</div>
+            </div>
+        </div>
+        
+        <div class="connection-arrows">⬇️</div>
+        
+        <!-- Service Layer -->
+        <div class="layer service-layer">
+            <div class="layer-title">Service Layer</div>
+            <div class="components">
+                <div class="component">AuthService<br><small>Authentication</small></div>
+                <div class="component">StoryService<br><small>Story CRUD</small></div>
+                <div class="component">LanguageService<br><small>Localization</small></div>
+                <div class="component">MistralService<br><small>AI Integration</small></div>
+                <div class="component">ElevenLabsService<br><small>TTS Integration</small></div>
+                <div class="component">UserPrefsService<br><small>Settings</small></div>
+            </div>
+        </div>
+        
+        <div class="connection-arrows">⬇️</div>
+        
+        <div class="two-column">
+            <!-- Supabase Backend -->
+            <div class="layer backend-layer">
+                <div class="layer-title">Supabase Backend</div>
+                <div class="components">
+                    <div class="component">Authentication<br><div class="api-endpoint">auth.signUp()</div><div class="api-endpoint">auth.signIn()</div></div>
+                    <div class="component">PostgreSQL Database<br><div class="api-endpoint">from('profiles')</div><div class="api-endpoint">from('stories')</div></div>
+                    <div class="component">Real-time Subscriptions<br><div class="api-endpoint">WebSocket</div></div>
+                    <div class="component">File Storage<br><div class="api-endpoint">storage.upload()</div></div>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <span class="protocol-badge">HTTPS/REST API</span>
+                    <span class="protocol-badge">WebSocket</span>
+                </div>
+            </div>
+            
+            <!-- Local Storage -->
+            <div class="layer storage-layer">
+                <div class="layer-title">Local Device Storage</div>
+                <div class="components">
+                    <div class="component">SharedPreferences<br><small>User settings</small></div>
+                    <div class="component">Language Settings<br><small>Locale data</small></div>
+                    <div class="component">User Preferences<br><small>App config</small></div>
+                </div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <span class="protocol-badge">Local I/O</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="connection-arrows">⬇️ ⬅️ External APIs ➡️ ⬇️</div>
+        
+        <!-- External AI Services -->
+        <div class="layer ai-layer">
+            <div class="layer-title">External AI Services</div>
+            <div class="two-column">
+                <div class="components">
+                    <div class="component">Mistral AI API<br><div class="api-endpoint">POST /v1/chat/completions</div><div class="api-endpoint">Story Generation</div></div>
+                </div>
+                <div class="components">
+                    <div class="component">ElevenLabs API<br><div class="api-endpoint">POST /v1/text-to-speech</div><div class="api-endpoint">Audio Generation</div></div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                <span class="protocol-badge">HTTPS/JSON</span>
+                <span class="protocol-badge">API Keys</span>
+            </div>
+        </div>
+        
+        <div class="connection-arrows">⬇️</div>
+        
+        <!-- Data Layer -->
+        <div class="layer data-layer">
+            <div class="layer-title">Data Persistence Layer</div>
+            <div class="two-column">
+                <div class="components">
+                    <div class="component">Database Tables<br><div class="api-endpoint">profiles</div><div class="api-endpoint">stories</div></div>
+                </div>
+                <div class="components">
+                    <div class="component">File Storage Buckets<br><div class="api-endpoint">story_audio/*.mp3</div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Data Flow Description -->
+        <div class="flow-description">
+            <div class="flow-title">Key Data Flows & Communication Patterns:</div>
+            <p><strong>1. User Authentication:</strong> Flutter → AuthService → Supabase Auth → PostgreSQL (profiles table)</p>
+            <p><strong>2. Story Creation:</strong> User Input → StoryService → MistralService → Mistral API → Generated Story → ElevenLabsService → ElevenLabs API → Audio File → Supabase Storage</p>
+            <p><strong>3. Real-time Synchronization:</strong> Supabase Real-time → StoryService → UI Updates (WebSocket)</p>
+            <p><strong>4. Language Management:</strong> LanguageService ↔ SharedPreferences ↔ User Profile (Supabase)</p>
+            <p><strong>5. Story Retrieval:</strong> StoryService → Supabase Database → Audio URLs → Supabase Storage</p>
+        </div>
+        
+        <!-- Technical Details -->
+        <div class="flow-description">
+            <div class="flow-title">Technical Implementation Details:</div>
+            <p><strong>Authentication:</strong> JWT tokens, email/password, row-level security (RLS)</p>
+            <p><strong>Database:</strong> PostgreSQL with real-time subscriptions, upsert operations</p>
+            <p><strong>File Storage:</strong> Public URLs for audio files, automatic cleanup on story deletion</p>
+            <p><strong>AI Integration:</strong> HTTP REST APIs with error handling and timeout management</p>
+            <p><strong>Localization:</strong> Multi-language support (English/German) with dynamic switching</p>
+            <p><strong>State Management:</strong> Provider pattern for global state, ChangeNotifier for services</p>
+        </div>
+        
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #02569B, #1976D2);"></div>
+                Flutter UI Layer
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #E8F4FD, #BBDEFB);"></div>
+                Service Layer
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #3ECF8E, #26C281);"></div>
+                Supabase Backend
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #FF6B35, #FF8F65);"></div>
+                External AI APIs
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #6C63FF, #8C7AFF);"></div>
+                Local Storage
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(135deg, #34495E, #2C3E50);"></div>
+                Data Persistence
+            </div>
+        </div>
+    </div>
+</body>
+</html>

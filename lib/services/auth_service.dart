@@ -274,6 +274,8 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+
+
   String getDisplayName() {
     if (_userProfile != null && _userProfile!['name'] != null) {
       return _userProfile!['name'];

@@ -26,6 +26,9 @@ dependencies:
   # Deep linking for email verification
   app_links: ^6.3.2
   
+  # URL launching for email and web links
+  url_launcher: ^6.2.4
+  
   # Localization
   flutter_localizations:
     sdk: flutter

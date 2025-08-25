@@ -1,0 +1,102 @@
+MEELO FLUTTER APP - SYSTEM ARCHITECTURE DIAGRAM
+===============================================
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                            FLUTTER MOBILE APPLICATION                                   │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐        │
+│  │Auth Screens │ │Home Dashbrd│ │  Memories   │ │   Profile   │ │Questionnaire│        │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘        │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+                                          │
+                                          ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                                 SERVICE LAYER                                           │
+│  ┌───────────┐ ┌────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐          │
+│  │AuthService│ │StoryService│ │LanguageServ │ │MistralServ  │ │ElevenLabsServ│          │
+│  └───────────┘ └────────────┘ └─────────────┘ └─────────────┘ └─────────────┘          │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+           │              │              │              │              │
+           ▼              ▼              ▼              ▼              ▼
+┌──────────────────┐ ┌─────────────────────────────────┐ ┌─────────────────────────────────┐
+│                  │ │         SUPABASE BACKEND        │ │       EXTERNAL AI APIS          │
+│  LOCAL STORAGE   │ │                                 │ │                                 │
+│                  │ │  ┌─────────────────────────────┐ │ │  ┌─────────────────────────────┐ │
+│ ┌──────────────┐ │ │  │      AUTHENTICATION         │ │ │  │       MISTRAL AI            │ │
+│ │SharedPrefs   │ │ │  │    JWT Tokens, Email/Pass   │ │ │  │  api.mistral.ai/v1/chat/   │ │
+│ └──────────────┘ │ │  └─────────────────────────────┘ │ │  │     completions             │ │
+│                  │ │                                 │ │ │  │  Story Generation           │ │
+│ ┌──────────────┐ │ │  ┌─────────────────────────────┐ │ │  └─────────────────────────────┘ │
+│ │Language      │ │ │  │      POSTGRESQL DATABASE    │ │ │                                 │
+│ │Settings      │ │ │  │                             │ │ │  ┌─────────────────────────────┐ │
+│ └──────────────┘ │ │  │  ┌─────────┐ ┌─────────────┐ │ │ │  │      ELEVENLABS TTS         │ │
+│                  │ │  │  │profiles │ │   stories   │ │ │ │  │ api.elevenlabs.io/v1/text- │ │
+│ ┌──────────────┐ │ │  │  │table    │ │   table     │ │ │ │  │      to-speech              │ │
+│ │User Prefs    │ │ │  │  └─────────┘ └─────────────┘ │ │ │  │  Audio Generation           │ │
+│ └──────────────┘ │ │  └─────────────────────────────┘ │ │  └─────────────────────────────┘ │
+└──────────────────┘ │                                 │ └─────────────────────────────────┐
+                     │  ┌─────────────────────────────┐ │                                 │
+          ▲          │  │      FILE STORAGE           │ │                                 │
+          │          │  │                             │ │                                 │
+    Local I/O        │  │  ┌─────────────────────────┐ │ │                                 │
+                     │  │  │    story_audio/         │ │ │                                 │
+                     │  │  │    ├── story_1.mp3      │ │ │                                 │
+                     │  │  │    ├── story_2.mp3      │ │ │                                 │
+                     │  │  │    └── story_N.mp3      │ │ │                                 │
+                     │  │  └─────────────────────────┘ │ │                                 │
+                     │  └─────────────────────────────┘ │                                 │
+                     │                                 │                                 │
+                     │  ┌─────────────────────────────┐ │                                 │
+                     │  │     REAL-TIME SUBSCRIPTIONS │ │                                 │
+                     │  │          WebSocket          │ │                                 │
+                     │  └─────────────────────────────┘ │                                 │
+                     └─────────────────────────────────┘                                 │
+                                      │                                                   │
+                                      ▼                                                   ▼
+                                HTTPS/REST API                                     HTTPS/JSON API
+                               WebSocket (Real-time)                                  API Keys Auth
+
+COMMUNICATION PROTOCOLS:
+========================
+
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                              DATA FLOW PATTERNS                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+1. USER AUTHENTICATION:
+   Flutter UI → AuthService → Supabase Auth API → PostgreSQL (profiles table)
+
+2. STORY CREATION:
+   User Input → StoryService → MistralService → Mistral API (generate story)
+                            ↓
+   Generated Story → ElevenLabsService → ElevenLabs API (generate audio)
+                            ↓
+   Audio File → Supabase Storage → Database (save audio URL) → Real-time sync → UI Update
+
+3. REAL-TIME SYNCHRONIZATION:
+   Database Change → Supabase Real-time → WebSocket → StoryService → Provider → UI Update
+
+4. LANGUAGE MANAGEMENT:
+   User Selection → LanguageService → SharedPreferences
+                                   ↓
+   Language Preference → User Profile → Supabase Database
+
+5. STORY RETRIEVAL:
+   StoryService → Supabase Database Query → Audio URLs → Supabase Storage → Audio Playback
+
+KEY TECHNOLOGIES:
+================
+
+Frontend:     Flutter SDK, Dart, Provider State Management
+Backend:      Supabase (PostgreSQL + Auth + Storage + Real-time)
+AI Services:  Mistral AI (Story Generation), ElevenLabs (Text-to-Speech)
+Storage:      Supabase PostgreSQL, Supabase Storage, SharedPreferences
+Protocols:    HTTPS/REST, WebSocket, Local I/O
+Security:     JWT Tokens, API Keys, Row-Level Security (RLS)
+
+DEPLOYMENT:
+==========
+
+Mobile App:   iOS App Store / Google Play Store
+Backend:      Supabase Cloud (Managed PostgreSQL, Auth, Storage, Real-time)
+AI Services:  Mistral AI Cloud, ElevenLabs Cloud
+Environment:  .env configuration for API keys and endpoints

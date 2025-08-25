@@ -451,7 +451,7 @@ class AppLocalizationsEn extends AppLocalizations {
   
   // Login screen messages
   @override
-  String get welcomeBack => 'Welcome back';
+  String get welcomeBack => 'Welcome';
   
   @override
   String get signInToAccount => 'Sign in to your account to continue';
@@ -510,4 +510,265 @@ class AppLocalizationsEn extends AppLocalizations {
   
   @override
   String get failedToCompleteSetup => 'Failed to complete setup';
+
+  // Profile Section
+  @override
+  String get user => 'User';
+
+  @override
+  String get familyMembers => 'Family Members';
+
+  @override
+  String get addFamilyMember => 'Add Family Member';
+
+  @override
+  String get others => 'Others';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get feedbackAndSupport => 'Feedback & Support';
+
+  @override
+  String get help => 'Help';
+
+  @override
+  String get privacy => 'Data Privacy';
+
+  @override
+  String get imprint => 'Imprint';
+
+  @override
+  String get deleteAccount => 'Delete Account';
+
+  // User Profile
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get nickname => 'Nickname';
+
+  @override
+  String get enterNickname => 'Enter nickname (optional)';
+
+  @override
+  String get profileUpdated => 'Profile updated successfully';
+
+  @override
+  String get failedToUpdateProfile => 'Failed to update profile';
+
+  // Family Members
+  @override
+  String get noFamilyMembers => 'No family members connected yet';
+
+  @override
+  String get inviteFamilyMember => 'Invite Family Member';
+
+  @override
+  String get familyMemberEmail => 'Family Member Email';
+
+  @override
+  String get relation => 'Relation';
+
+  @override
+  String get selectRelation => 'Select Relation';
+
+  @override
+  String get spouse => 'Spouse';
+
+  @override
+  String get child => 'Child';
+
+  @override
+  String get parent => 'Parent';
+
+  @override
+  String get sibling => 'Sibling';
+
+  @override
+  String get grandchild => 'Grandchild';
+
+  @override
+  String get grandparent => 'Grandparent';
+
+  @override
+  String get friend => 'Friend';
+
+  @override
+  String get professionalCaregiver => 'Professional Caregiver';
+
+  @override
+  String get familyMemberName => 'Family Member Name';
+
+  @override
+  String get familyMemberNameOptional => 'Name (optional)';
+
+  @override
+  String get sendInvitation => 'Send Invitation';
+
+  @override
+  String get invitationSent => 'Invitation sent successfully!';
+
+  @override
+  String get failedToSendInvitation => 'Failed to send invitation';
+
+  @override
+  String get removeFamilyMember => 'Remove Family Member';
+
+  @override
+  String get removeFamilyMemberConfirmation => 'Are you sure you want to remove this family member?';
+
+  @override
+  String get pendingInvitation => 'Pending';
+
+  @override
+  String get accepted => 'Accepted';
+
+  @override
+  String get rejected => 'Rejected';
+
+  @override
+  String get expired => 'Expired';
+
+  // Figures/Healthcare
+  @override
+  String get figureConnections => 'Figure Connections';
+
+  @override
+  String get noFigureConnections => 'No healthcare figures connected';
+
+  @override
+  String get addFigureConnection => 'Add Figure Connection';
+
+  @override
+  String get figureName => 'Figure Name';
+
+  @override
+  String get figureType => 'Figure Type';
+
+  @override
+  String get selectFigureType => 'Select Figure Type';
+
+  @override
+  String get doctor => 'Doctor';
+
+  @override
+  String get nurse => 'Nurse';
+
+  @override
+  String get therapist => 'Therapist';
+
+  @override
+  String get healthDevice => 'Health Device';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get contactInfo => 'Contact Information';
+
+  @override
+  String get active => 'Active';
+
+  @override
+  String get inactive => 'Inactive';
+
+  @override
+  String get pending => 'Pending';
+
+  @override
+  String get disconnected => 'Disconnected';
+
+  @override
+  String get connectionGuide => 'Connection Guide';
+
+  @override
+  String get figureConnectionAdded => 'Figure connection added successfully!';
+
+  @override
+  String get failedToAddFigureConnection => 'Failed to add figure connection';
+
+  @override
+  String get removeFigureConnection => 'Remove Connection';
+
+  @override
+  String get removeFigureConnectionConfirmation => 'Are you sure you want to remove this connection?';
+
+  // Figure Types
+  @override
+  String get lifeStory => 'Life Story';
+
+  @override
+  String get familyAndFriends => 'Family & Friends';
+
+  @override
+  String get music => 'Music';
+
+  // Figure Connection Status
+  @override
+  String get boxConnectionStatus => 'Box Connection Status';
+
+  @override
+  String get boxConnectionDescription => 'Connect or disconnect your figures from the box';
+
+  @override
+  String get connectedToBox => 'Connected to box';
+
+  @override
+  String get notConnected => 'Not connected';
+
+  @override
+  String get noFiguresConnectedToBox => 'No figures connected to box';
+
+  @override
+  String get figuresConnectedToBox => 'figures connected';
+
+  @override
+  String get failedToUpdateConnectionStatus => 'Failed to update connection status';
+
+  // Notification Settings
+  @override
+  String get storyNotifications => 'Story Notifications';
+
+  @override
+  String get familyUpdateNotifications => 'Family Update Notifications';
+
+  @override
+  String get reminderNotifications => 'Reminder Notifications';
+
+  @override
+  String get generalNotifications => 'General Notifications';
+
+  @override
+  String get notificationSettings => 'Notification Settings';
+
+  // Feedback & Support
+  @override
+  String get giveFeedback => 'Give Feedback';
+
+  @override
+  String get feedbackEmailSubject => 'meelo App Feedback';
+
+  @override
+  String get feedbackEmailBody => 'Please share your feedback about the meelo app here...';
+
+  @override
+  String get dataPrivacy => 'Data Privacy Guidelines';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  // Account Management
+  @override
+  String get deleteAccountWarning => 'Warning: This will permanently delete your account and all associated data.';
+
+  @override
+  String get deleteAccountConfirmation => 'Are you sure you want to delete your account? This action cannot be undone.';
+
+  @override
+  String get accountDeleted => 'Account deleted successfully';
+
+  @override
+  String get failedToDeleteAccount => 'Failed to delete account';
 }

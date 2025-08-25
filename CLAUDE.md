@@ -135,6 +135,7 @@ SUPABASE_URL=your_supabase_url
 SUPABASE_KEY=your_supabase_anon_key
 MISTRAL_API_KEY=your_mistral_api_key
 ELEVENLABS_API_KEY=your_elevenlabs_api_key
+LETTERMINT_API_KEY=your_lettermint_api_key
 ```
 
 ### Figma Integration
@@ -322,6 +323,7 @@ flutter format .
 - **Supabase**: Backend infrastructure and real-time database
 - **ElevenLabs**: Text-to-speech service for audio narration
 - **Mistral AI**: Large language model for story generation
+- **Lettermint**: EU-based email service for family member invitations
 - **Storage**: Supabase Storage for audio file management
 
 ---

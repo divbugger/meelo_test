@@ -12,6 +12,9 @@ import 'package:meelo/main.dart';
 import 'package:meelo/services/language_service.dart';
 import 'package:meelo/services/auth_service.dart';
 import 'package:meelo/services/user_preferences_service.dart';
+import 'package:meelo/services/family_service.dart';
+import 'package:meelo/services/figure_status_service.dart';
+import 'package:meelo/services/notification_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +40,9 @@ void main() {
       languageService: languageService,
       authService: authService,
       preferencesService: preferencesService,
+      familyService: FamilyService(),
+      figureStatusService: FigureStatusService(),
+      notificationService: NotificationService(),
     ));
 
     // Verify that the loading spinner is shown during initialization.

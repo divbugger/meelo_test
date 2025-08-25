@@ -10,7 +10,13 @@
       "Bash(dart run:*)",
       "Bash(supabase status:*)",
       "Bash(mkdir:*)",
-      "Bash(flutter run:*)"
+      "Bash(flutter run:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(apt:*)",
+      "Bash(apt install:*)",
+      "WebSearch",
+      "WebFetch(domain:docs.lettermint.co)"
     ],
     "deny": []
   }

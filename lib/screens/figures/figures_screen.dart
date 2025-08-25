@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meelo/l10n/app_localizations.dart';
+//import 'package:meelo/l10n/app_localizations.dart';
 
 class FiguresScreen extends StatelessWidget {
   const FiguresScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

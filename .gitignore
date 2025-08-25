@@ -5,6 +5,11 @@
 *.swp
 .DS_Store
 dotenv.env
+.claude/
+.cursor/
+.vscode/
+.cursor/mcp.json
+.high_level_arch/
 .env
 .atom/
 .build/
@@ -17,6 +22,10 @@ dotenv.env
 .vscode/
 assets/
 
+# Testing and implementation related read.md files
+database_schema.md
+IMPLEMENTATION.md
+TESTING_CHECKLIST.md
 
 # IntelliJ related
 *.iml

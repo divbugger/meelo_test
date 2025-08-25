@@ -8,6 +8,9 @@ import 'screens/auth_wrapper.dart';
 import 'services/language_service.dart';
 import 'services/auth_service.dart';
 import 'services/user_preferences_service.dart';
+import 'services/family_service.dart';
+import 'services/figure_status_service.dart';
+import 'services/notification_service.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -38,12 +41,18 @@ void main() async {
     // Now it's safe to create services that use Supabase.instance
     final authService = AuthService();
     final preferencesService = UserPreferencesService();
+    final familyService = FamilyService();
+    final figureStatusService = FigureStatusService();
+    final notificationService = NotificationService();
 
     // Start the app after successful initialization
     runApp(MyApp(
       languageService: languageService,
       authService: authService,
       preferencesService: preferencesService,
+      familyService: familyService,
+      figureStatusService: figureStatusService,
+      notificationService: notificationService,
     ));
   } catch (e) {
     // Handle initialization errors gracefully
@@ -65,12 +74,18 @@ class MyApp extends StatelessWidget {
   final LanguageService languageService;
   final AuthService authService;
   final UserPreferencesService preferencesService;
+  final FamilyService familyService;
+  final FigureStatusService figureStatusService;
+  final NotificationService notificationService;
 
   const MyApp({
     Key? key, 
     required this.languageService,
     required this.authService,
     required this.preferencesService,
+    required this.familyService,
+    required this.figureStatusService,
+    required this.notificationService,
   }) : super(key: key);
 
   @override
@@ -80,6 +95,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: languageService),
         ChangeNotifierProvider.value(value: authService),
         ChangeNotifierProvider.value(value: preferencesService),
+        ChangeNotifierProvider.value(value: familyService),
+        ChangeNotifierProvider.value(value: figureStatusService),
+        ChangeNotifierProvider.value(value: notificationService),
       ],
       child: Consumer<LanguageService>(
         builder: (context, languageService, child) {

@@ -240,6 +240,108 @@ abstract class AppLocalizations {
   String get completeSetup;
   String get pleaseCompleteAllFields;
   String get failedToCompleteSetup;
+
+  // Profile Section
+  String get user;
+  String get familyMembers;
+  String get addFamilyMember;
+  String get others;
+  String get notifications;
+  String get feedbackAndSupport;
+  String get help;
+  String get privacy;
+  String get imprint;
+  String get deleteAccount;
+
+  // User Profile
+  String get editProfile;
+  String get nickname;
+  String get enterNickname;
+  String get profileUpdated;
+  String get failedToUpdateProfile;
+
+  // Family Members
+  String get noFamilyMembers;
+  String get inviteFamilyMember;
+  String get familyMemberEmail;
+  String get relation;
+  String get selectRelation;
+  String get spouse;
+  String get child;
+  String get parent;
+  String get sibling;
+  String get grandchild;
+  String get grandparent;
+  String get friend;
+  String get professionalCaregiver;
+  String get familyMemberName;
+  String get familyMemberNameOptional;
+  String get sendInvitation;
+  String get invitationSent;
+  String get failedToSendInvitation;
+  String get removeFamilyMember;
+  String get removeFamilyMemberConfirmation;
+  String get pendingInvitation;
+  String get accepted;
+  String get rejected;
+  String get expired;
+
+  // Figures/Healthcare
+  String get figureConnections;
+  String get noFigureConnections;
+  String get addFigureConnection;
+  String get figureName;
+  String get figureType;
+  String get selectFigureType;
+  String get doctor;
+  String get nurse;
+  String get therapist;
+  String get healthDevice;
+  String get description;
+  String get contactInfo;
+  String get active;
+  String get inactive;
+  String get pending;
+  String get disconnected;
+  String get connectionGuide;
+  String get figureConnectionAdded;
+  String get failedToAddFigureConnection;
+  String get removeFigureConnection;
+  String get removeFigureConnectionConfirmation;
+
+  // Figure Types
+  String get lifeStory;
+  String get familyAndFriends;
+  String get music;
+
+  // Figure Connection Status
+  String get boxConnectionStatus;
+  String get boxConnectionDescription;
+  String get connectedToBox;
+  String get notConnected;
+  String get noFiguresConnectedToBox;
+  String get figuresConnectedToBox;
+  String get failedToUpdateConnectionStatus;
+
+  // Notification Settings
+  String get storyNotifications;
+  String get familyUpdateNotifications;
+  String get reminderNotifications;
+  String get generalNotifications;
+  String get notificationSettings;
+
+  // Feedback & Support
+  String get giveFeedback;
+  String get feedbackEmailSubject;
+  String get feedbackEmailBody;
+  String get dataPrivacy;
+  String get termsOfService;
+
+  // Account Management
+  String get deleteAccountWarning;
+  String get deleteAccountConfirmation;
+  String get accountDeleted;
+  String get failedToDeleteAccount;
 }
 
 class _AppLocalizationsDelegate

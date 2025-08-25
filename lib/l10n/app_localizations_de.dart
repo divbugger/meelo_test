@@ -454,7 +454,7 @@ class AppLocalizationsDe extends AppLocalizations {
   
   // Login screen messages
   @override
-  String get welcomeBack => 'Willkommen zurück';
+  String get welcomeBack => 'Willkommen';
   
   @override
   String get signInToAccount => 'Melden Sie sich in Ihrem Konto an, um fortzufahren';
@@ -513,4 +513,265 @@ class AppLocalizationsDe extends AppLocalizations {
   
   @override
   String get failedToCompleteSetup => 'Setup konnte nicht abgeschlossen werden';
+
+  // Profile Section
+  @override
+  String get user => 'Benutzer';
+
+  @override
+  String get familyMembers => 'Familienmitglieder';
+
+  @override
+  String get addFamilyMember => 'Familienmitglied hinzufügen';
+
+  @override
+  String get others => 'Sonstiges';
+
+  @override
+  String get notifications => 'Benachrichtigungen';
+
+  @override
+  String get feedbackAndSupport => 'Feedback & Unterstützung';
+
+  @override
+  String get help => 'Hilfe';
+
+  @override
+  String get privacy => 'Datenschutz';
+
+  @override
+  String get imprint => 'Impressum';
+
+  @override
+  String get deleteAccount => 'Konto löschen';
+
+  // User Profile
+  @override
+  String get editProfile => 'Profil bearbeiten';
+
+  @override
+  String get nickname => 'Spitzname';
+
+  @override
+  String get enterNickname => 'Spitzname eingeben (optional)';
+
+  @override
+  String get profileUpdated => 'Profil erfolgreich aktualisiert';
+
+  @override
+  String get failedToUpdateProfile => 'Profil konnte nicht aktualisiert werden';
+
+  // Family Members
+  @override
+  String get noFamilyMembers => 'Noch keine Familienmitglieder verbunden';
+
+  @override
+  String get inviteFamilyMember => 'Familienmitglied einladen';
+
+  @override
+  String get familyMemberEmail => 'E-Mail des Familienmitglieds';
+
+  @override
+  String get relation => 'Beziehung';
+
+  @override
+  String get selectRelation => 'Beziehung auswählen';
+
+  @override
+  String get spouse => 'Ehepartner/in';
+
+  @override
+  String get child => 'Kind';
+
+  @override
+  String get parent => 'Elternteil';
+
+  @override
+  String get sibling => 'Geschwister';
+
+  @override
+  String get grandchild => 'Enkelkind';
+
+  @override
+  String get grandparent => 'Großelternteil';
+
+  @override
+  String get friend => 'Freund/in';
+
+  @override
+  String get professionalCaregiver => 'Professionelle Pflegekraft';
+
+  @override
+  String get familyMemberName => 'Name des Familienmitglieds';
+
+  @override
+  String get familyMemberNameOptional => 'Name (optional)';
+
+  @override
+  String get sendInvitation => 'Einladung senden';
+
+  @override
+  String get invitationSent => 'Einladung erfolgreich gesendet!';
+
+  @override
+  String get failedToSendInvitation => 'Einladung konnte nicht gesendet werden';
+
+  @override
+  String get removeFamilyMember => 'Familienmitglied entfernen';
+
+  @override
+  String get removeFamilyMemberConfirmation => 'Sind Sie sicher, dass Sie dieses Familienmitglied entfernen möchten?';
+
+  @override
+  String get pendingInvitation => 'Ausstehend';
+
+  @override
+  String get accepted => 'Angenommen';
+
+  @override
+  String get rejected => 'Abgelehnt';
+
+  @override
+  String get expired => 'Abgelaufen';
+
+  // Figures/Healthcare
+  @override
+  String get figureConnections => 'Figurenverbindungen';
+
+  @override
+  String get noFigureConnections => 'Keine Gesundheitsfiguren verbunden';
+
+  @override
+  String get addFigureConnection => 'Figurenverbindung hinzufügen';
+
+  @override
+  String get figureName => 'Figurenname';
+
+  @override
+  String get figureType => 'Figurentyp';
+
+  @override
+  String get selectFigureType => 'Figurentyp auswählen';
+
+  @override
+  String get doctor => 'Arzt/Ärztin';
+
+  @override
+  String get nurse => 'Krankenpfleger/in';
+
+  @override
+  String get therapist => 'Therapeut/in';
+
+  @override
+  String get healthDevice => 'Gesundheitsgerät';
+
+  @override
+  String get description => 'Beschreibung';
+
+  @override
+  String get contactInfo => 'Kontaktinformationen';
+
+  @override
+  String get active => 'Aktiv';
+
+  @override
+  String get inactive => 'Inaktiv';
+
+  @override
+  String get pending => 'Ausstehend';
+
+  @override
+  String get disconnected => 'Getrennt';
+
+  @override
+  String get connectionGuide => 'Verbindungsleitfaden';
+
+  @override
+  String get figureConnectionAdded => 'Figurenverbindung erfolgreich hinzugefügt!';
+
+  @override
+  String get failedToAddFigureConnection => 'Figurenverbindung konnte nicht hinzugefügt werden';
+
+  @override
+  String get removeFigureConnection => 'Verbindung entfernen';
+
+  @override
+  String get removeFigureConnectionConfirmation => 'Sind Sie sicher, dass Sie diese Verbindung entfernen möchten?';
+
+  // Figure Types
+  @override
+  String get lifeStory => 'Lebensgeschichte';
+
+  @override
+  String get familyAndFriends => 'Familie & Freunde';
+
+  @override
+  String get music => 'Musik';
+
+  // Figure Connection Status
+  @override
+  String get boxConnectionStatus => 'Box-Verbindungsstatus';
+
+  @override
+  String get boxConnectionDescription => 'Verbinden oder trennen Sie Ihre Figuren mit der Box';
+
+  @override
+  String get connectedToBox => 'Mit Box verbunden';
+
+  @override
+  String get notConnected => 'Nicht verbunden';
+
+  @override
+  String get noFiguresConnectedToBox => 'Keine Figuren mit Box verbunden';
+
+  @override
+  String get figuresConnectedToBox => 'Figuren verbunden';
+
+  @override
+  String get failedToUpdateConnectionStatus => 'Verbindungsstatus konnte nicht aktualisiert werden';
+
+  // Notification Settings
+  @override
+  String get storyNotifications => 'Geschichte-Benachrichtigungen';
+
+  @override
+  String get familyUpdateNotifications => 'Familien-Update-Benachrichtigungen';
+
+  @override
+  String get reminderNotifications => 'Erinnerungsbenachrichtigungen';
+
+  @override
+  String get generalNotifications => 'Allgemeine Benachrichtigungen';
+
+  @override
+  String get notificationSettings => 'Benachrichtigungseinstellungen';
+
+  // Feedback & Support
+  @override
+  String get giveFeedback => 'Feedback geben';
+
+  @override
+  String get feedbackEmailSubject => 'meelo App Feedback';
+
+  @override
+  String get feedbackEmailBody => 'Bitte teilen Sie hier Ihr Feedback zur meelo App mit...';
+
+  @override
+  String get dataPrivacy => 'Datenschutzrichtlinien';
+
+  @override
+  String get termsOfService => 'Nutzungsbedingungen';
+
+  // Account Management
+  @override
+  String get deleteAccountWarning => 'Warnung: Dies wird Ihr Konto und alle zugehörigen Daten dauerhaft löschen.';
+
+  @override
+  String get deleteAccountConfirmation => 'Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.';
+
+  @override
+  String get accountDeleted => 'Konto erfolgreich gelöscht';
+
+  @override
+  String get failedToDeleteAccount => 'Konto konnte nicht gelöscht werden';
 }
