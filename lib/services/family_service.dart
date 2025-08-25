@@ -137,7 +137,7 @@ class FamilyService extends ChangeNotifier {
       final inviterName = userProfile['name'] ?? 'A family member';
       final relationText = _getRelationDisplayText(familyMember.relation);
       
-      final invitationLink = 'meelo://family/invitation?token=${familyMember.invitationToken}';
+      final invitationLink = 'https://meelo.care/family/invitation?token=${familyMember.invitationToken}';
       
       final emailBody = '''
 Dear ${familyMember.name ?? 'friend'},

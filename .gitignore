@@ -22,10 +22,16 @@ dotenv.env
 .vscode/
 assets/
 
+# Production deploying related files
+web_landing_page.html
+apple-app-site-association
+assetlinks.json
+
 # Testing and implementation related read.md files
 database_schema.md
 IMPLEMENTATION.md
 TESTING_CHECKLIST.md
+UNIVERSAL_LINKS_SETUP.md
 
 # IntelliJ related
 *.iml

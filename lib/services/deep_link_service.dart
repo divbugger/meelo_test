@@ -64,12 +64,12 @@ class DeepLinkService {
 
     // Handle email verification links
     if ((scheme == 'meelo' && host == 'auth') || 
-        (scheme == 'https' && host == 'meelo.app' && path.startsWith('/auth'))) {
+        (scheme == 'https' && (host == 'meelo.app' || host == 'meelo.care') && path.startsWith('/auth'))) {
       _handleAuthCallback(queryParams);
     }
     // Handle family invitation links
     else if ((scheme == 'meelo' && host == 'family' && path == '/invitation') ||
-             (scheme == 'https' && host == 'meelo.app' && path.startsWith('/family/invitation'))) {
+             (scheme == 'https' && (host == 'meelo.app' || host == 'meelo.care') && path.startsWith('/family/invitation'))) {
       _handleFamilyInvitation(queryParams);
     }
   }

@@ -40,6 +40,30 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="meelo.app" android:pathPrefix="/auth" />
             </intent-filter>
+            
+            <!-- Deep link intent filter for family invitations -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="meelo" android:host="family" android:path="/invitation" />
+            </intent-filter>
+            
+            <!-- Universal link for family invitations (meelo.care) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="meelo.care" android:pathPrefix="/family/invitation" />
+            </intent-filter>
+            
+            <!-- Universal link for family invitations (www.meelo.care) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="www.meelo.care" android:pathPrefix="/family/invitation" />
+            </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
